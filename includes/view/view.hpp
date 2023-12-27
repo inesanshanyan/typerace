@@ -1,11 +1,9 @@
 #ifndef GAMEVIEW_HPP
 #define GAMEVIEW_HPP
 
-class GameView {
+class View {
 public:
-    GameView();
-
-    void displayGame();
+    View();
 };
 
 #endif // GAMEVIEW_HPP

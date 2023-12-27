@@ -1,19 +1,16 @@
 #ifndef GAMEPRESENTER_HPP
 #define GAMEPRESENTER_HPP
 
-#include "model.hpp"
-#include "view.hpp"
+#include "model/model.hpp"
+#include "view/view.hpp"
 
-class GamePresenter {
+class Presenter {
 private:
-    GameModel* model;
-    GameView* view;
-
+    Model* model;
+    View* view;
 public:
-    GamePresenter(GameModel* modelPtr, GameView* viewPtr);
-
+    Presenter(Model* modelPtr, View* viewPtr);
     void handleInputAndUpdateGame();
-
 };
 
 #endif // GAMEPRESENTER_HPP

@@ -1,11 +1,11 @@
 #ifndef GAMEMODEL_HPP
 #define GAMEMODEL_HPP
 
-class GameModel {
+class Model {
 private:
 
 public:
-    GameModel();
+    Model();
 };
 
 #endif // GAMEMODEL_HPP

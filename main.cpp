@@ -1,9 +1,8 @@
-#include "src/presenter.cpp"
-
+#include "src/controller/controller.cpp"
 int main()
 {
     View view;
     Model model;
-    Presenter* control = new Presenter(&model, &view);
+    Controller control(&model, &view);
 
 }

@@ -7,5 +7,6 @@ private:
 public:
     Model();
 };
+Model::Model(){};
 
 #endif // GAMEMODEL_HPP

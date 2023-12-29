@@ -3,28 +3,15 @@
 
 #include "../model/model.hpp"
 #include "../view/view.hpp"
-#include "absController.hpp"
-#include "gameController.hpp"
-#include "menuController.hpp"
-
 
 class Controller {
 private:
     Model* model;
     View* view;
-    absController activeController;
 public:
-    Controller(Model* modelPtr, View* viewPtr);
+    Controller(Model* , View* );
+    void changeController();
     void handleInputAndUpdateGame();
 };
-
-// Controller::Controller(Model* modelPtr, View* viewPtr){
-//     activeController = new 
-// }
-
-// void handleInputAndUpdateGame(){
-//     activeController.handleInput();
-// };
-
 
 #endif // GAMEController_HPP

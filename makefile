@@ -16,7 +16,7 @@ MODEL_OBJS = $(MODEL_SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 VIEW_OBJS = $(VIEW_SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 MAIN_OBJ = $(BUILD_DIR)/main.o
 
-TARGET = myprogram
+TARGET = main
 
 .PHONY: all clean directories
 

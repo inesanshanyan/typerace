@@ -1,13 +1,14 @@
 #include "../includes/controller/controller.hpp"
-
-Controller::Controller(Model* modelPtr, View* viewPtr){
-    this->model = modelPtr;
-    this->view = viewPtr;
+#include <ncurses.h>
+Controller::Controller(Model* modelPtr, View* viewPtr)
+{
+    model = modelPtr;
+    view = viewPtr;
+    state = new MenuState(this);
 }
 
-void Controller::handleInputAndUpdateGame(){
-    if(view->getKey() == 'q')
-    {
-        abort();
-    }
+void Controller::handleInputAndUpdateGame()
+{
+    printw("1111"); // Print a string to the window
+    state->handleInput();
 }

@@ -1,16 +1,20 @@
-#ifndef GAMECONTROLLER_HPP
-#define GAMECONTROLLER_HPP
+#ifndef CONTROLLER_HPP
+#define CONTROLLER_HPP
 
 #include "../model/model.hpp"
 #include "../view/view.hpp"
+#include "state.hpp"
+#include "menuState.hpp"
+#include "gameState.hpp"
+#include <vector>
 
 class Controller {
-private:
+public:
     Model* model;
     View* view;
-public:
+    State* state;
+    std::vector<State> prevState; 
     Controller(Model* , View* );
-    void changeController();
     void handleInputAndUpdateGame();
 };
 

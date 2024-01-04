@@ -6,13 +6,11 @@
 #include "player.hpp"
 
 class Model {
-private:
-    Player player;
-    Board board;
-    Menu menu;
 public:
+    Player* player;
+    Board* board;
+    Menu* menu;
     Model();
-    void getDataFromFile();
 };
 
 #endif // GAMEMODEL_HPP

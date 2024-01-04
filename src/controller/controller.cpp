@@ -9,6 +9,6 @@ Controller::Controller(Model* modelPtr, View* viewPtr)
 
 void Controller::handleInputAndUpdateGame()
 {
-    printw("1111"); // Print a string to the window
+    printw("1111"); 
     state->handleInput();
 }

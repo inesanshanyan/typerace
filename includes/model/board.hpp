@@ -6,7 +6,8 @@
 #include <list>
 class Board
 {
-private:
+public:
+    WINDOW *mainWindow;
     std::vector<std::string> content;
     std::string *activeWord;
 };

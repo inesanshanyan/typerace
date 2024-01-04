@@ -1,5 +1,5 @@
 CXX = g++ # Change this to your desired C++ compiler
-CXXFLAGS = -std=c++11  -Wall -Wextra 
+CXXFLAGS = -std=c++11 -g -Wall -Wextra 
 
 INCLUDE_DIR = ./includes
 SRC_DIR = ./src

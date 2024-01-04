@@ -7,14 +7,13 @@ GameState::GameState(Controller *controller)
 
 void GameState::draw()
 {
-    
+    controller->view->drawGame(controller->model->board, controller->model->player);
 }
 
 void GameState::handleInput()
 {
-    printw("game han input"); // Print a string to the window
-
-    this->controller->view->getLetter();
+    char key = controller->view->getLetter();
+    draw();
 }
 
 void GameState::changeState(){

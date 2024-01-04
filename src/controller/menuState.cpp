@@ -9,15 +9,27 @@ MenuState::MenuState(Controller *controller)
 
 void MenuState::draw()
 {
-    
+    controller->view->drawMenu(controller->model->menu);
 };
 
 void MenuState::handleInput()
 {
-    printw("menu handle input !"); // Print a string to the window
-
-    controller->view->getControlKey();
-    changeState();
+    int key = controller->view->getControlKey();
+    if(key == 10){
+        if (*controller->model->menu->currentItem == "start")
+        {
+            controller->view->clear();
+            controller->state = new GameState(controller);
+        }else if(*controller->model->menu->currentItem == "results")
+        {
+            // change to another state.
+        }
+    }else if (key == KEY_UP){
+        controller->model->menu->changeOption(0);
+    }else if(key == KEY_DOWN){
+        controller->model->menu->changeOption(1);
+    }
+    draw();
 };
 
 void MenuState::changeState(){

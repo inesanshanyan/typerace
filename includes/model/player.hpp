@@ -8,6 +8,7 @@
 class Player
 {
 public:
+    WINDOW *mainWindow;
     std::string *currentWord;
 };
 

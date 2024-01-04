@@ -1,5 +1,5 @@
 CXX = g++ # Change this to your desired C++ compiler
-CXXFLAGS = -std=c++11  -Wall -Wextra 
+CXXFLAGS = -std=c++11 -g -Wall -Wextra 
 
 INCLUDE_DIR = ./includes
 SRC_DIR = ./src
@@ -16,7 +16,7 @@ MODEL_OBJS = $(MODEL_SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 VIEW_OBJS = $(VIEW_SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 MAIN_OBJ = $(BUILD_DIR)/main.o
 
-TARGET = myprogram
+TARGET = main
 
 .PHONY: all clean directories
 

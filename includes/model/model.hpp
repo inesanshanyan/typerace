@@ -1,31 +1,15 @@
 #ifndef GAMEMODEL_HPP
 #define GAMEMODEL_HPP
 
-#include <iostream>
-#include <vector>
-#include <list>
+#include "menu.hpp"
+#include "board.hpp"
+#include "player.hpp"
 
-struct Player
-{
-    
-};
-
-struct Board
-{
-    
-};
-
-struct Menu
-{
-    std::string *currentItem;
-    
-};
 class Model {
-private:
-    Player player;
-    Board board;
-    Menu menu;
 public:
+    Player* player;
+    Board* board;
+    Menu* menu;
     Model();
 };
 

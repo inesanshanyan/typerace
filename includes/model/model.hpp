@@ -1,12 +1,16 @@
 #ifndef GAMEMODEL_HPP
 #define GAMEMODEL_HPP
 
-class Model {
-private:
+#include "menu.hpp"
+#include "board.hpp"
+#include "player.hpp"
 
+class Model {
 public:
+    Player* player;
+    Board* board;
+    Menu* menu;
     Model();
 };
-Model::Model(){};
 
 #endif // GAMEMODEL_HPP

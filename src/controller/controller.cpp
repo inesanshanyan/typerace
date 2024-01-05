@@ -7,8 +7,7 @@ Controller::Controller(Model* modelPtr, View* viewPtr)
     state = new MenuState(this);
 }
 
-void Controller::handleInputAndUpdateGame()
+void Controller::handleInput()
 {
-    printw("1111"); 
     state->handleInput();
 }

@@ -7,6 +7,6 @@ int main()
 
     while (true)
     {
-        control.handleInputAndUpdateGame();
+        control.handleInput();
     }
 }

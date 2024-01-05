@@ -13,6 +13,7 @@ public:
     View();
     int getKey();
     void drawGame(Board *, Player *);
+    void drawBoard(Board *);
     void drawMenu(Menu *);
     char getLetter();
     int getControlKey(); 

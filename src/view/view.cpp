@@ -42,11 +42,9 @@ int View::getControlKey(){
 
 void View::drawGame(Board *board, Player * player)
 {
-    box(board->mainWindow, 0, 0);
     box(player->mainWindow, '*', '*');
 
     wrefresh(player->mainWindow);
-    wrefresh(board->mainWindow);
 }
 
 void View::drawMenu(Menu *menu)
@@ -68,3 +66,21 @@ void View::clear()
 {
     wclear(stdscr);
 }
+
+void View::drawBoard(Board *board){
+    box(board->mainWindow, 0, 0);
+    int row = 1;
+    int col = 1;
+    for (const auto& word : board->content) {
+        if (col + word.length() + 1 >= 70 - 2) {
+            col = 1; 
+            row++;
+        }
+        if (row >= 30 - 4) {
+            break;
+        }
+        mvwprintw(board->mainWindow, row, col, "%s ", word.c_str());
+        col += word.length() + 1;
+    }
+    wrefresh(board->mainWindow);
+};

@@ -14,6 +14,7 @@ void MenuState::draw()
 
 void MenuState::handleInput()
 {
+    draw();
     int key = controller->view->getControlKey();
     if(key == 10){
         if (*controller->model->menu->currentItem == "start")
@@ -29,7 +30,6 @@ void MenuState::handleInput()
     }else if(key == KEY_DOWN){
         controller->model->menu->changeOption(1);
     }
-    draw();
 };
 
 void MenuState::changeState(){

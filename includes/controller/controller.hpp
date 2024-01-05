@@ -15,7 +15,7 @@ public:
     State* state;
     std::vector<State> prevState; 
     Controller(Model* , View* );
-    void handleInputAndUpdateGame();
+    void handleInput();
 };
 
 #endif // GAMEController_HPP

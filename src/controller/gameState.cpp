@@ -12,8 +12,8 @@ void GameState::draw()
 
 void GameState::handleInput()
 {
-    char key = controller->view->getLetter();
     draw();
+    char key = controller->view->getLetter();
 }
 
 void GameState::changeState(){

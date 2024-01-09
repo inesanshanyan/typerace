@@ -67,7 +67,7 @@ void View::drawMenu(Menu *menu)
         if ( &menu->options[i] == menu->currentItem ) {
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "----->");
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 9, "%s", menu->currentItem->c_str() );
-        } else {
+        } else { 
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "%s", menu->options[i].c_str());
         }
     }
@@ -80,6 +80,7 @@ void View::clear()
 }
 
 void View::drawBoard(Board *board){
+    //TODO change all this numbers with CONSTANTS
     box(board->mainWindow, 0, 0);
     int row = 1;
     int col = 1;

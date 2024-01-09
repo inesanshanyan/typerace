@@ -17,6 +17,7 @@ public:
         currentItem = &options[0];
     };
 
+    //TODO WRITE THIS DUNCTION inside a cpp file
     void changeOption(int key)
     {
         // for down

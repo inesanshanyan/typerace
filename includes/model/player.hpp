@@ -9,7 +9,15 @@ class Player
 {
 public:
     WINDOW *mainWindow;
-    std::string *currentWord;
+    std::vector<char>* currentWord;
+
+    Player() : mainWindow(nullptr), currentWord(new std::vector<char>()) {
+        // ...
+    }
+
+    ~Player() {
+        delete currentWord; 
+    }
 };
 
 #endif

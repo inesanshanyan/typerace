@@ -10,6 +10,7 @@ View::View()
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
+    start_color();
 }
 
 int View::getKey()
@@ -68,3 +69,28 @@ void View::clear()
 {
     wclear(stdscr);
 }
+
+char View::playerInput(bool check, std::vector<char>* currentWord, Player* player) {
+ 
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    if (check == true) {
+        wattron(player->mainWindow, COLOR_PAIR(1));
+    }
+    else {
+        wattron(player->mainWindow, COLOR_PAIR(2));
+    }
+    wclear(player->mainWindow);
+    wmove(player->mainWindow, 24, 48); // model player window coords
+
+    for (char c : *currentWord) {
+        waddch(player->mainWindow, c);
+    }
+    wattr_off(player->mainWindow, A_COLOR, NULL);
+    box(player->mainWindow, '*', '*'); // for not disappearing
+    wrefresh(player->mainWindow);
+    char key = getch();
+    return key;
+}
+
+

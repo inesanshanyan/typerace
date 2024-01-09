@@ -1,30 +1,21 @@
-#ifndef GAMECONTROLLER_HPP
-#define GAMECONTROLLER_HPP
+#ifndef CONTROLLER_HPP
+#define CONTROLLER_HPP
 
 #include "../model/model.hpp"
 #include "../view/view.hpp"
-#include "absController.hpp"
-#include "gameController.hpp"
-#include "menuController.hpp"
-
+#include "state.hpp"
+#include "menuState.hpp"
+#include "gameState.hpp"
+#include <vector>
 
 class Controller {
-private:
+public:
     Model* model;
     View* view;
-    absController activeController;
-public:
-    Controller(Model* modelPtr, View* viewPtr);
-    void handleInputAndUpdateGame();
+    State* state;
+    std::vector<State> prevState; 
+    Controller(Model* , View* );
+    void handleInput();
 };
-
-// Controller::Controller(Model* modelPtr, View* viewPtr){
-//     activeController = new 
-// }
-
-// void handleInputAndUpdateGame(){
-//     activeController.handleInput();
-// };
-
 
 #endif // GAMEController_HPP

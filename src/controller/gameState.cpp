@@ -15,6 +15,12 @@ void GameState::handleInput()
 {
     draw();
     char key = controller->view->getLetter();
+    if(key == ' '){
+        controller->model->board->activeWord++;
+    }else if (key == 'q')
+    {
+        controller->model->board->activeWord--;
+    }
 }
 
 void GameState::changeState(){

@@ -8,8 +8,20 @@ View::View()
 {
     initscr();
     cbreak();
+    start_color(); // Enable color support
     noecho();
     keypad(stdscr, TRUE);
+
+    init_pair(1, COLOR_WHITE, COLOR_BLACK); 
+    init_pair(2, COLOR_WHITE, COLOR_RED);
+    init_pair(3, COLOR_WHITE, COLOR_BLUE);
+    init_pair(4, COLOR_WHITE, COLOR_GREEN);
+    init_pair(5, COLOR_WHITE, COLOR_MAGENTA);
+    init_pair(6, COLOR_WHITE, COLOR_CYAN);
+    init_pair(7, COLOR_RED, COLOR_BLACK);
+    init_pair(8, COLOR_GREEN, COLOR_BLACK);
+    init_pair(9, COLOR_WHITE, COLOR_BLACK);
+    init_pair(10, COLOR_BLACK, COLOR_RED);
 }
 
 int View::getKey()
@@ -79,7 +91,15 @@ void View::drawBoard(Board *board){
         if (row >= 30 - 4) {
             break;
         }
-        mvwprintw(board->mainWindow, row, col, "%s ", word.c_str());
+
+        if (board->activeWord == &word)
+        {
+            wattron(board->mainWindow, COLOR_PAIR(2));
+            mvwprintw(board->mainWindow, row, col, "%s ", word.c_str());
+            wattroff(board->mainWindow, COLOR_PAIR(2));
+        } else {
+            mvwprintw(board->mainWindow, row, col, "%s ", word.c_str());
+        }
         col += word.length() + 1;
     }
     wrefresh(board->mainWindow);

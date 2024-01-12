@@ -3,7 +3,8 @@
 
 #include "state.hpp"
 
-class MenuState : public State{
+class MenuState : public State 
+{
 public:
     MenuState (Controller *);
     void draw() override;

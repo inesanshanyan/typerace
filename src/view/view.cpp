@@ -110,3 +110,30 @@ void View::drawLoginBoard(Player *player) {
     box(player->loginWiondow, '9', '4');
     wrefresh(player->loginWiondow);
 }
+
+void View::printPlayerInput(Player* player) {
+ 
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    if (player->wordCheck == true) {
+        wattron(player->mainWindow, COLOR_PAIR(1));
+    }
+    else {
+        wattron(player->mainWindow, COLOR_PAIR(2));
+    }
+    wclear(player->mainWindow);
+    wmove(player->mainWindow, 24, 48); // model player window coords
+
+    for (char c : *(player->currentWord)) { 
+        waddch(player->mainWindow, c);
+    }
+    wattr_off(player->mainWindow, A_COLOR, NULL);
+    box(player->mainWindow, '*', '*'); // for not disappearing
+    wrefresh(player->mainWindow);
+    
+}
+
+/*char playerInput() {
+    return getch();
+}*/
+

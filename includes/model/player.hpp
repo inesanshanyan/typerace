@@ -10,7 +10,16 @@ class Player
 public:
     WINDOW *mainWindow;
     WINDOW *loginWiondow;
-    std::string *currentWord;
+    std::vector<char>* currentWord;
+    bool wordCheck;
+
+    Player() : mainWindow(nullptr), currentWord(new std::vector<char>()) {
+        // ...
+    }
+
+    ~Player() {
+        delete currentWord; 
+    }
 };
 
 #endif

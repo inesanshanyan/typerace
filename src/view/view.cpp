@@ -70,11 +70,11 @@ void View::clear()
     wclear(stdscr);
 }
 
-char View::playerInput(bool check, std::vector<char>* currentWord, Player* player) {
+void View::printPlayerInput(Player* player) {
  
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
-    if (check == true) {
+    if (player->wordCheck == true) {
         wattron(player->mainWindow, COLOR_PAIR(1));
     }
     else {
@@ -83,14 +83,16 @@ char View::playerInput(bool check, std::vector<char>* currentWord, Player* playe
     wclear(player->mainWindow);
     wmove(player->mainWindow, 24, 48); // model player window coords
 
-    for (char c : *currentWord) {
+    for (char c : *(player->currentWord)) { 
         waddch(player->mainWindow, c);
     }
     wattr_off(player->mainWindow, A_COLOR, NULL);
     box(player->mainWindow, '*', '*'); // for not disappearing
     wrefresh(player->mainWindow);
-    char key = getch();
-    return key;
+    
 }
 
+/*char playerInput() {
+    return getch();
+}*/
 

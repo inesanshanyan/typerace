@@ -17,7 +17,8 @@ public:
     char getLetter();
     int getControlKey(); 
     void clear();
-    char playerInput(bool check, std::vector<char>* currentWord, Player* player);
+    void printPlayerInput(Player* player); 
+
 };
 
 #endif // GAMEVIEW_HPP

@@ -20,7 +20,11 @@ void GameState::handleInput()
     //char key = controller->view->getLetter();
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    char key = controller->view->playerInput(rand() % 2, controller->model->player->currentWord, controller->model->player);
+    controller->model->player->wordCheck = rand() % 2;
+
+    controller->view->printPlayerInput(controller->model->player);
+    char key = controller->view->getKey();
+        
 
     if (controller->model->player->currentWord != nullptr) {
         controller->model->player->currentWord->push_back(key); 

@@ -15,6 +15,7 @@ public:
     void drawGame(Board *, Player *);
     void drawBoard(Board *);
     void drawMenu(Menu *);
+    void drawLoginBoard(Player *);
     char getLetter();
     int getControlKey(); 
     void clear();

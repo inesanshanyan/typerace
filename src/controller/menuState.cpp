@@ -2,8 +2,6 @@
 #include <ncurses.h>
 MenuState::MenuState(Controller *controller)
 {
-    printw("Menu stateee"); // Print a string to the window
-    getch();
     this->controller = controller;
 };
 

@@ -105,3 +105,7 @@ void View::drawBoard(Board *board){
     }
     wrefresh(board->mainWindow);
 };
+
+void View::drawLoginBoard(Player *) {
+    
+}

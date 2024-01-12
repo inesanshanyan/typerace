@@ -3,9 +3,7 @@
 
 #include "controller.hpp"
 class Controller;
-
-class State
-{
+class State {
 private:
 protected:
     Controller *controller;

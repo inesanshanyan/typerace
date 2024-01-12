@@ -6,6 +6,7 @@
 #include "state.hpp"
 #include "menuState.hpp"
 #include "gameState.hpp"
+#include "loginState.hpp"
 #include <vector>
 
 class Controller {

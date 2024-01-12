@@ -9,6 +9,7 @@ class Player
 {
 public:
     WINDOW *mainWindow;
+    WINDOW *loginWiondow;
     std::string *currentWord;
 };
 

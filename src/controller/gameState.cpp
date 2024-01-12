@@ -20,6 +20,9 @@ void GameState::handleInput()
     }else if (key == 'q')
     {
         controller->model->board->changeCurrentWord(0);
+    } else if (key == 27)
+    {
+        controller->state = new MenuState(controller);
     }
 }
 

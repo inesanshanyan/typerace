@@ -13,7 +13,7 @@ public:
     std::string *currentItem;
     std::vector<std::string> options;
     Menu(){
-        options = {"start","pause","end"};
+        options = {"start", "login", "pause","end"};
         currentItem = &options[0];
     };
 

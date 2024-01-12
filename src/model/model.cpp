@@ -11,6 +11,7 @@ Model::Model(){
     menu->mainWindow = newwin(15, 20, 5, 5);
     board->mainWindow = newwin(20, 70, 0, 40);
     player->mainWindow = newwin(4, 70, 20, 40);
+    player->loginWiondow = newwin(15, 60, 2, 40);
     //------------------------------------------------
     board->content = getContentFromFile("other/test.php");
     board->activeWord = &board->content[0];

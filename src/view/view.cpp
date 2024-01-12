@@ -106,6 +106,7 @@ void View::drawBoard(Board *board){
     wrefresh(board->mainWindow);
 };
 
-void View::drawLoginBoard(Player *) {
-    
+void View::drawLoginBoard(Player *player) {
+    box(player->loginWiondow, '9', '4');
+    wrefresh(player->loginWiondow);
 }

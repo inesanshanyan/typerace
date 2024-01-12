@@ -22,6 +22,10 @@ void MenuState::handleInput()
         }else if(*controller->model->menu->currentItem == "results")
         {
             // change to another state.
+        }else if(*controller->model->menu->currentItem == "login")
+        {
+            controller->view->clear();
+            controller->state = new LoginState(controller);
         }
     }else if (key == KEY_UP){
         controller->model->menu->changeOption(0);

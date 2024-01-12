@@ -13,7 +13,9 @@ public:
     View();
     int getKey();
     void drawGame(Board *, Player *);
+    void drawBoard(Board *);
     void drawMenu(Menu *);
+    void drawLoginBoard(Player *);
     char getLetter();
     int getControlKey(); 
     void clear();

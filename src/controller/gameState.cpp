@@ -12,6 +12,7 @@ GameState::GameState(Controller *controller)
 void GameState::draw()
 {
     controller->view->drawGame(controller->model->board, controller->model->player);
+    controller->view->drawBoard(controller->model->board);
 }
 
 void GameState::handleInput()

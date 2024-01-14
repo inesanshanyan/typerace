@@ -64,7 +64,7 @@ void View::drawMenu(Menu *menu)
     wclear(menu->mainWindow);
     box(menu->mainWindow, 0, 0);
     for (int i = 0; i < menu->options.size(); ++i) {
-        if ( &menu->options[i] == menu->currentItem ) {
+        if (menu->options[i] == *menu->currentItem ) {
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "----->");
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 9, "%s", menu->currentItem->c_str() );
         } else { 

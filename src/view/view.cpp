@@ -3,14 +3,24 @@
 #define _window_height 10
 #define _window_width 30
 
-
 View::View()
 {
     initscr();
     cbreak();
+    start_color(); // Enable color support
     noecho();
     keypad(stdscr, TRUE);
-    start_color();
+
+    init_pair(1, COLOR_WHITE, COLOR_BLACK); 
+    init_pair(2, COLOR_WHITE, COLOR_RED);
+    init_pair(3, COLOR_WHITE, COLOR_BLUE);
+    init_pair(4, COLOR_WHITE, COLOR_GREEN);
+    init_pair(5, COLOR_WHITE, COLOR_MAGENTA);
+    init_pair(6, COLOR_WHITE, COLOR_CYAN);
+    init_pair(7, COLOR_RED, COLOR_BLACK);
+    init_pair(8, COLOR_GREEN, COLOR_BLACK);
+    init_pair(9, COLOR_WHITE, COLOR_BLACK);
+    init_pair(10, COLOR_BLACK, COLOR_RED);
 }
 
 int View::getKey()
@@ -43,11 +53,9 @@ int View::getControlKey(){
 
 void View::drawGame(Board *board, Player * player)
 {
-    box(board->mainWindow, 0, 0);
     box(player->mainWindow, '*', '*');
 
     wrefresh(player->mainWindow);
-    wrefresh(board->mainWindow);
 }
 
 void View::drawMenu(Menu *menu)
@@ -58,7 +66,7 @@ void View::drawMenu(Menu *menu)
         if ( &menu->options[i] == menu->currentItem ) {
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "----->");
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 9, "%s", menu->currentItem->c_str() );
-        } else {
+        } else { 
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "%s", menu->options[i].c_str());
         }
     }
@@ -70,29 +78,60 @@ void View::clear()
     wclear(stdscr);
 }
 
+void View::drawBoard(Board *board){
+    //TODO change all this numbers with CONSTANTS
+    box(board->mainWindow, 0, 0);
+    int row = 1;
+    int col = 1;
+    for (const auto& word : board->content) {
+        if (col + word.length() + 1 >= 70 - 2) {
+            col = 1; 
+            row++;
+        }
+        if (row >= 30 - 4) {
+            break;
+        }
+
+        if (board->activeWord == &word)
+        {
+            wattron(board->mainWindow, COLOR_PAIR(2));
+            mvwprintw(board->mainWindow, row, col, "%s ", word.c_str());
+            wattroff(board->mainWindow, COLOR_PAIR(2));
+        } else {
+            mvwprintw(board->mainWindow, row, col, "%s ", word.c_str());
+        }
+        col += word.length() + 1;
+    }
+    wrefresh(board->mainWindow);
+};
+
+void View::drawLoginBoard(Player *player) {
+    box(player->loginWiondow, '9', '4');
+    wrefresh(player->loginWiondow);
+}
+
 void View::printPlayerInput(Player* player) {
  
-    init_pair(1, COLOR_RED, COLOR_BLACK);
-    init_pair(2, COLOR_GREEN, COLOR_BLACK);
     if (player->wordCheck == true) {
-        wattron(player->mainWindow, COLOR_PAIR(1));
+        wattron(player->mainWindow, COLOR_PAIR(8));
     }
     else {
-        wattron(player->mainWindow, COLOR_PAIR(2));
+        wattron(player->mainWindow, COLOR_PAIR(7));
     }
     wclear(player->mainWindow);
-    wmove(player->mainWindow, 24, 48); // model player window coords
+    wmove(player->mainWindow, 1, 3); 
 
     for (char c : *(player->currentWord)) { 
         waddch(player->mainWindow, c);
     }
     wattr_off(player->mainWindow, A_COLOR, NULL);
-    box(player->mainWindow, '*', '*'); // for not disappearing
+    box(player->mainWindow, '*', '*'); 
     wrefresh(player->mainWindow);
     
 }
 
-/*char playerInput() {
-    return getch();
-}*/
+void View::clearWindow(WINDOW* win) {
+    wclear(win);  
+    wrefresh(win);
+}
 

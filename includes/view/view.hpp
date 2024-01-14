@@ -13,12 +13,14 @@ public:
     View();
     int getKey();
     void drawGame(Board *, Player *);
+    void drawBoard(Board *);
     void drawMenu(Menu *);
+    void drawLoginBoard(Player *);
     char getLetter();
     int getControlKey(); 
     void clear();
-    void printPlayerInput(Player* player); 
-
+    void printPlayerInput(Player*);
+    void clearWindow(WINDOW*);
 };
 
 #endif // GAMEVIEW_HPP

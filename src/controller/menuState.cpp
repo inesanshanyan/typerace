@@ -2,8 +2,6 @@
 #include <ncurses.h>
 MenuState::MenuState(Controller *controller)
 {
-    printw("Menu stateee"); // Print a string to the window
-    getch();
     this->controller = controller;
 };
 
@@ -24,6 +22,10 @@ void MenuState::handleInput()
         }else if(*controller->model->menu->currentItem == "results")
         {
             // change to another state.
+        }else if(*controller->model->menu->currentItem == "login")
+        {
+            controller->view->clear();
+            controller->state = new LoginState(controller);
         }
     }else if (key == KEY_UP){
         controller->model->menu->changeOption(0);

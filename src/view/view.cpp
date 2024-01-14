@@ -3,6 +3,7 @@
 #define _window_height 10
 #define _window_width 30
 
+
 View::View()
 {
     initscr();
@@ -112,6 +113,7 @@ void View::drawLoginBoard(Player *player) {
 
 void View::printPlayerInput(Player* player) {
  
+
     if (player->wordCheck == true) {
         wattron(player->mainWindow, COLOR_PAIR(8));
     }
@@ -120,6 +122,7 @@ void View::printPlayerInput(Player* player) {
     }
     wclear(player->mainWindow);
     wmove(player->mainWindow, 1, 3); 
+
 
     for (char c : *(player->currentWord)) { 
         waddch(player->mainWindow, c);

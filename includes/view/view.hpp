@@ -19,6 +19,7 @@ public:
     char getLetter();
     int getControlKey(); 
     void clear();
+
     void printPlayerInput(Player*);
     void clearWindow(WINDOW*);
 };

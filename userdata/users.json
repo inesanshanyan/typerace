@@ -1,10 +1,30 @@
 [
-{
-    "login": "admin\n",
-    "password": "admin\n"
-},
-{
-    "login": "user",
-    "password": "user"
-}
+    {
+        "login": "admin",
+        "password": "admin"
+    },
+    {
+        "login": "user",
+        "password": "user"
+    },
+    {
+        "login": "new",
+        "password": "new"
+    },
+    {
+        "login": "hello f",
+        "password": "hello f"
+    },
+    {
+        "login": "bla",
+        "password": "bla"
+    },
+    {
+        "login": "pro",
+        "password": "pro"
+    },
+    {
+        "login": "blaa",
+        "password": "blaa"
+    }
 ]

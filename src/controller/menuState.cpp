@@ -15,7 +15,8 @@ void MenuState::handleInput()
     draw();
     int key = controller->view->getControlKey();
     if(key == 10){
-        if (*controller->model->menu->currentItem == "start")
+        if (*controller->model->menu->currentItem == "start" &&
+            controller->model->player->entered)
         {
             controller->view->clear();
             controller->state = new GameState(controller);

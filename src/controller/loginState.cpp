@@ -22,11 +22,38 @@ void LoginState::handleInput()
             if (user["login"] == controller->model->player->login &&
                 user["password"] == controller->model->player->password)
             {
+                controller->model->player->entered = true;
                 controller->state = new GameState(controller);
             }
-        }   
+        }
+        if (!controller->model->player->entered)
+        {
+            controller->state = new MenuState(controller);
+        }
+        
     }else if (*controller->model->menu->currentItem == "sign in")
     {
+        Json users = controller->model->getUsers();
+        bool flag = true;
+
+        for (const auto& user : users) {
+            if (user["login"] == controller->model->player->login)
+            {
+                flag = false;
+            }
+        }
+        if (flag)
+        {
+            Json newUser;
+            newUser["login"] = controller->model->player->login;
+            newUser["password"] = controller->model->player->password;
+            users.push_back(newUser);
+            controller->model->setUsers(users);
+            controller->model->player->login = "";
+            controller->model->player->password = "";
+        } else{
+            
+        }
         controller->state = new MenuState(controller);
     }
 }
@@ -44,7 +71,7 @@ void LoginState::enterLogin(Player *player)
         if(key == 7 && player->login.size() > 0)
         {
             player->login.pop_back();
-        }else if (key != 7 || key != 10) // 7 is a backspace
+        }else if (key != 7 && key != 10) // 7 is a backspace
         {
             player->login.push_back(key);
         }
@@ -61,7 +88,7 @@ void LoginState::enterPassword(Player *player)
         if(key == 7 && player->password.size() > 0)
         {
             player->password.pop_back();
-        }else if (key != 7 || key != 10)
+        }else if (key != 7 && key != 10)
         {
             player->password.push_back(key);
         }

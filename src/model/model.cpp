@@ -47,3 +47,17 @@ Json Model::getUsers()
     file.close(); 
     return jsonArray;
 }
+
+void Model::setUsers(const Json& users)
+{
+    std::ofstream file("userdata/users.json");
+    if (!file.is_open()) {
+        abort();
+    }
+    try {
+        file << std::setw(4) << users << std::endl;
+    } catch (const Json::parse_error& e) {
+        std::cerr << "JSON parse error: " << e.what() << std::endl;
+    }
+    file.close(); 
+}

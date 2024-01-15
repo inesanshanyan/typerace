@@ -16,7 +16,8 @@ public:
     Menu* menu;
     Model();
     std::vector<std::string> getContentFromFile(const std::string&);
-    nlohmann::json getUsers();
+    Json getUsers();
+    void setUsers(const Json& );
 };
 
 #endif // GAMEMODEL_HPP

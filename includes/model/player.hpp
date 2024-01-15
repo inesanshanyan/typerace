@@ -13,6 +13,7 @@ public:
 
     std::string login = "";
     std::string password = "";
+    bool entered = false;
     std::vector<char>* currentWord;
     bool wordCheck;
 

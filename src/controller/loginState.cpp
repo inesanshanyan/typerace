@@ -44,7 +44,7 @@ void LoginState::enterLogin(Player *player)
         if(key == 7 && player->login.size() > 0)
         {
             player->login.pop_back();
-        }else if (key != 7) // 7 is a backspace
+        }else if (key != 7 || key != 10) // 7 is a backspace
         {
             player->login.push_back(key);
         }
@@ -61,7 +61,7 @@ void LoginState::enterPassword(Player *player)
         if(key == 7 && player->password.size() > 0)
         {
             player->password.pop_back();
-        }else if (key != 7)
+        }else if (key != 7 || key != 10)
         {
             player->password.push_back(key);
         }

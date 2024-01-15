@@ -31,10 +31,12 @@ int View::getKey()
 }
 
 char View::getLetter(){
-    char letter;
+    int letter;
     do {
         letter = getch();
-    } while ((letter < 'a' || letter > 'z') && letter != ' ' && letter != 27);
+    } while ((letter < 'a' || letter > 'z') &&
+             letter == KEY_ENTER && letter != ' ' && 
+             letter != 27 && letter != KEY_BACKSPACE);
     return letter;
 }
 
@@ -107,7 +109,12 @@ void View::drawBoard(Board *board){
 };
 
 void View::drawLoginBoard(Player *player) {
+    wclear(player->loginWiondow);
     box(player->loginWiondow, '9', '4');
+
+    mvwprintw(player->loginWiondow, 1, 2, "login - %s", player->login.c_str());
+    mvwprintw(player->loginWiondow, 3, 2, "password - %s", player->password.c_str());
+
     wrefresh(player->loginWiondow);
 }
 

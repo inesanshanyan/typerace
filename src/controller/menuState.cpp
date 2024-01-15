@@ -29,13 +29,10 @@ void MenuState::handleInput()
         {
             
         }
-        else if(*controller->model->menu->currentItem == "sign in")
+        else if(*controller->model->menu->currentItem == "sign up" || 
+                *controller->model->menu->currentItem == "sign in")
         {
-            
-        }
-        else if(*controller->model->menu->currentItem == "sign up")
-        {
-            
+            controller->state = new LoginState(controller);
         }
     }else if (key == KEY_UP){
         controller->model->menu->changeOption(0);

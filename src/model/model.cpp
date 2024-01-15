@@ -32,3 +32,32 @@ std::vector<std::string> Model::getContentFromFile(const std::string& filename) 
     }
     return words;
 }
+Json Model::getUsers()
+{
+    std::ifstream file("userdata/users.json");
+    if (!file.is_open()) {
+        abort();
+    }
+    Json jsonArray;
+    try {
+        file >> jsonArray; 
+    } catch (const Json::parse_error& e) {
+        std::cerr << "JSON parse error: " << e.what() << std::endl;
+    }
+    file.close(); 
+    return jsonArray;
+}
+
+void Model::setUsers(const Json& users)
+{
+    std::ofstream file("userdata/users.json");
+    if (!file.is_open()) {
+        abort();
+    }
+    try {
+        file << std::setw(4) << users << std::endl;
+    } catch (const Json::parse_error& e) {
+        std::cerr << "JSON parse error: " << e.what() << std::endl;
+    }
+    file.close(); 
+}

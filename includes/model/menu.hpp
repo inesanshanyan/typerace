@@ -10,21 +10,25 @@ class Menu
 {
 public:
     WINDOW *mainWindow;
-    std::string *currentItem;
+    std::vector<std::string>::iterator  currentItem;
     std::vector<std::string> options;
+    std::vector<std::vector<std::string>> prevItems;
+
     Menu(){
-        options = {"start", "login", "pause","end"};
-        currentItem = &options[0];
+        options = {"start", "login", "pause", "end"};
+        prevItems.push_back(options);
+        currentItem = options.begin();
     };
 
     //TODO WRITE THIS DUNCTION inside a cpp file
     void changeOption(int key)
     {
-        // for down
-        if ( key == 1 && currentItem != &options[options.size() - 1] ) {
+        // Check the value of key and update currentItem accordingly
+        if (key == 1 && currentItem != options.end() - 1) {
+            // Move to the next element if not already at the last one
             currentItem = currentItem + 1;
-        } else if (key == 0 && currentItem != &options[0]) {
-            // for up
+        } else if (key == 0 && currentItem != options.begin()) {
+            // Move to the previous element if not already at the first one
             currentItem = currentItem - 1;
         }
     }

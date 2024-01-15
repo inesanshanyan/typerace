@@ -31,10 +31,12 @@ int View::getKey()
 }
 
 char View::getLetter(){
-    char letter;
+    int letter;
     do {
         letter = getch();
-    } while ((letter < 'a' || letter > 'z') && letter != ' ' && letter != 27);
+    } while ((letter < 'a' || letter > 'z') &&
+             letter == KEY_ENTER && letter != ' ' && 
+             letter != 27 && letter != KEY_BACKSPACE);
     return letter;
 }
 
@@ -64,7 +66,7 @@ void View::drawMenu(Menu *menu)
     wclear(menu->mainWindow);
     box(menu->mainWindow, 0, 0);
     for (int i = 0; i < menu->options.size(); ++i) {
-        if ( &menu->options[i] == menu->currentItem ) {
+        if (menu->options[i] == *menu->currentItem ) {
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "----->");
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 9, "%s", menu->currentItem->c_str() );
         } else { 
@@ -107,7 +109,12 @@ void View::drawBoard(Board *board){
 };
 
 void View::drawLoginBoard(Player *player) {
+    wclear(player->loginWiondow);
     box(player->loginWiondow, '9', '4');
+
+    mvwprintw(player->loginWiondow, 1, 2, "login - %s", player->login.c_str());
+    mvwprintw(player->loginWiondow, 3, 2, "password - %s", player->password.c_str());
+
     wrefresh(player->loginWiondow);
 }
 

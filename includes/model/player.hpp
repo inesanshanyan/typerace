@@ -10,6 +10,10 @@ class Player
 public:
     WINDOW *mainWindow;
     WINDOW *loginWiondow;
+
+    std::string login = "";
+    std::string password = "";
+    bool entered = false;
     std::vector<char>* currentWord;
     bool wordCheck;
 

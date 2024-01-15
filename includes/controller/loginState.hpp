@@ -6,6 +6,8 @@
 class LoginState : public State 
 {
 private:
+    void enterLogin(Player *);
+    void enterPassword(Player *);
 public:
     LoginState(Controller *controller);
     void changeState() override;

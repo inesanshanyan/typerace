@@ -23,8 +23,9 @@ public:
     char getLetter();
     int getControlKey(); 
     void clear();
-    void printPlayerInput(Player* player); 
 
+    void printPlayerInput(Player*);
+    void clearWindow(WINDOW*);
 };
 
 #endif // GAMEVIEW_HPP

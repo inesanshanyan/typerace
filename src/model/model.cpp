@@ -6,10 +6,13 @@ Model::Model(){
     menu = new Menu();
     board = new Board();
     player = new Player();
+    errors = new Errors();
+
     // this part is not connected with model but now it will be here.
     //TODO change this numbers to constants ----------
     menu->mainWindow = newwin(15, 20, 5, 5);
     board->mainWindow = newwin(20, 70, 0, 40);
+    errors->mainWindow = newwin(10, 40, 0, 30);
     player->mainWindow = newwin(4, 70, 20, 40);
     player->loginWiondow = newwin(15, 60, 2, 40);
     //------------------------------------------------

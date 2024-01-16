@@ -4,6 +4,7 @@
 #include "../includes/model/menu.hpp"
 #include "../includes/model/board.hpp"
 #include "../includes/model/player.hpp"
+#include "../includes/model/errors.hpp"
 #include <ncurses.h>
 #include <iostream>
 #include <vector>
@@ -16,6 +17,9 @@ public:
     void drawBoard(Board *);
     void drawMenu(Menu *);
     void drawLoginBoard(Player *);
+
+    // it can be changeg, instaeda of model maybe some class(Messages).
+    void drawErrorWindow(Errors *);
     char getLetter();
     int getControlKey(); 
     void clear();

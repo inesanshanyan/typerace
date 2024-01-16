@@ -35,8 +35,8 @@ char View::getLetter(){
     do {
         letter = getch();
     } while ((letter < 'a' || letter > 'z') &&
-             letter == KEY_ENTER && letter != ' ' && 
-             letter != 27 && letter != KEY_BACKSPACE);
+            letter == KEY_ENTER && letter != ' ' && 
+            letter != 27 && letter != KEY_BACKSPACE);
     return letter;
 }
 
@@ -144,3 +144,11 @@ void View::printPlayerInput(Player* player) {
     return getch();
 }*/
 
+void View::drawErrorWindow(Errors* errors){
+    wclear(errors->mainWindow);
+    box(errors->mainWindow, 'e', 'e');
+
+    mvwprintw(errors->mainWindow, 1, 2, "last - %s", errors->lastError.c_str());
+
+    wrefresh(errors->mainWindow);
+};

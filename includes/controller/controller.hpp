@@ -7,6 +7,7 @@
 #include "menuState.hpp"
 #include "gameState.hpp"
 #include "loginState.hpp"
+#include "messageState.hpp"
 #include <vector>
 
 class Controller {
@@ -14,7 +15,7 @@ public:
     Model* model;
     View* view;
     State* state;
-    std::vector<State> prevState; 
+    std::vector<State*> prevState; 
     Controller(Model* , View* );
     void handleInput();
 };

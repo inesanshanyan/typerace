@@ -4,6 +4,7 @@
 #include "menu.hpp"
 #include "board.hpp"
 #include "player.hpp"
+#include "errors.hpp"
 #include "../json/single_include/nlohmann/json.hpp"
 #include <fstream>
 
@@ -14,10 +15,12 @@ public:
     Player* player;
     Board* board;
     Menu* menu;
+    Errors* errors;
+
     Model();
-    std::vector<std::string> getContentFromFile(const std::string&);
     Json getUsers();
     void setUsers(const Json& );
+    std::vector<std::string> getContentFromFile(const std::string&);
 };
 
 #endif // GAMEMODEL_HPP

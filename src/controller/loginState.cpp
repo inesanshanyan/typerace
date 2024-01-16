@@ -28,7 +28,7 @@ void LoginState::handleInput()
         }
         if (!controller->model->player->entered)
         {
-            controller->state = new MenuState(controller);
+            controller->state = new MessageState(controller);
         }
         
     }else if (*controller->model->menu->currentItem == "sign in")

@@ -10,7 +10,7 @@ class Player
 public:
     WINDOW *mainWindow;
     WINDOW *loginWiondow;
-
+    WINDOW *exceptionWindow;
     std::string login = "";
     std::string password = "";
     bool entered = false;

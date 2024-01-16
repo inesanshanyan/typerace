@@ -26,5 +26,13 @@
     {
         "login": "blaa",
         "password": "blaa"
+    },
+    {
+        "login": "hell",
+        "password": "hell"
+    },
+    {
+        "login": "nazar",
+        "password": "nazar"
     }
 ]

@@ -15,11 +15,19 @@ void MenuState::handleInput()
     draw();
     int key = controller->view->getControlKey();
     if(key == 10){
-        if (*controller->model->menu->currentItem == "start" &&
-            controller->model->player->entered)
+        if (*controller->model->menu->currentItem == "start")
         {
-            controller->view->clear();
-            controller->state = new GameState(controller);
+            if (controller->model->player->entered)
+            {
+                controller->view->clear();
+                controller->state = new GameState(controller);
+                controller->prevState.push_back(controller->state);
+            }else{
+                controller->model->errors->lastError = "you're not logged ed please login before playing. (press 'q' for quite)";
+                controller->view->clear();
+                controller->state = new MessageState(controller);
+            }
+            
         }else if(*controller->model->menu->currentItem == "results")
         {
             // change to another state.

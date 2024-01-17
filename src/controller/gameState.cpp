@@ -19,37 +19,40 @@ void GameState::handleInput()
     static int letterIndex = 0;
     static int wordIndex = 0;
 
-    char key = controller->view->getKey();
+    int key = controller->view->getLetter();
 
-    if (key == 32) { // space key
+    if (key == ' ') { // space key
         controller->model->board->changeCurrentWord(1);
-        letterIndex = 0;
         controller->view->clearWindow(controller->model->player->mainWindow);
-        controller->model->player->currentWord->clear();
+        controller->model->player->currentWord.clear();
+    }else if(key == KEY_BACKSPACE && 
+        controller->model->player->currentWord.size() > 0){
+        controller->model->player->currentWord.pop_back();
+        checkWord();
     }
-    
-    else {
-        /*if (key == 8 && letterIndex != 0) { // backspace key
-            controller->model->player->currentWord->erase(letterIndex, 1);
-            --letterIndex;
-        }*/
-        if (letterIndex < controller->model->board->activeWord->length() && key == controller->model->board->activeWord->at(letterIndex)) {
-            controller->model->player->wordCheck = true;
-        }
-        else {
-            controller->model->player->wordCheck = false;
-        }
-        ++letterIndex;
-        if (controller->model->player->currentWord != nullptr) {
-            controller->model->player->currentWord->push_back(key);
-        }
-        else {
-            std::cerr << "nullptr smth" << std::endl;
-        }
-
+    else if(key != KEY_BACKSPACE){
+        controller->model->player->currentWord.push_back(key);
+        checkWord();
     }
     controller->view->printPlayerInput(controller->model->player);
-    
+}
+
+void GameState::checkWord()
+{
+    bool checked = true;
+    for (size_t i = 0; i < controller->model->player->currentWord.size(); i++)
+    {   
+        if (controller->model->player->currentWord[i] != controller->model->board->activeWord->c_str()[i])
+        {
+            checked = false;
+        }
+    }
+    if (checked)
+    {
+        controller->model->player->wordCheck = true;
+    }else{
+        controller->model->player->wordCheck = false;
+    }
 }
 
 void GameState::changeState(){

@@ -26,5 +26,33 @@
     {
         "login": "blaa",
         "password": "blaa"
+    },
+    {
+        "login": "hell",
+        "password": "hell"
+    },
+    {
+        "login": "nazar",
+        "password": "nazar"
+    },
+    {
+        "login": "blooooo",
+        "password": "blooooo"
+    },
+    {
+        "login": "hello",
+        "password": "hello"
+    },
+    {
+        "login": "sdsdsds",
+        "password": "dsds"
+    },
+    {
+        "login": "",
+        "password": ""
+    },
+    {
+        "login": "dsds",
+        "password": "sds"
     }
 ]

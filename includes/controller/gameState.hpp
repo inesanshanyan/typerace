@@ -11,6 +11,7 @@ public:
     void changeState() override;
     void draw() override;
     void handleInput() override;
+    void checkWord();
 };
 
 

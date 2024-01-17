@@ -4,21 +4,22 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <ncurses.h>
 
 class Player
 {
 public:
     WINDOW *mainWindow;
     WINDOW *loginWiondow;
-    std::vector<char>* currentWord;
+    WINDOW *exceptionWindow;
+    std::string login = "";
+    std::string password = "";
+    bool entered = false;
+    std::string currentWord;
     bool wordCheck;
 
-    Player() : mainWindow(nullptr), currentWord(new std::vector<char>()) {
+    Player() : mainWindow(nullptr), currentWord("") {
         // ...
-    }
-
-    ~Player() {
-        delete currentWord; 
     }
 };
 

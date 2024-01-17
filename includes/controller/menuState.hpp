@@ -10,6 +10,8 @@ public:
     void draw() override;
     void changeState() override;
     void handleInput() override;
+    void changeMenuState(const std::vector<std::string> options);
+    void changeMenuState();
 };
 
 #endif

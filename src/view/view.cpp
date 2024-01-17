@@ -30,11 +30,11 @@ int View::getKey()
     return key;
 }
 
-char View::getLetter(){
-    char letter;
+int View::getLetter(){
+    int letter;
     do {
         letter = getch();
-    } while ((letter < 'a' || letter > 'z') && letter != ' ' && letter != 27);
+    } while (letter < ' ' || letter > '~' && letter != KEY_BACKSPACE);
     return letter;
 }
 
@@ -64,7 +64,7 @@ void View::drawMenu(Menu *menu)
     wclear(menu->mainWindow);
     box(menu->mainWindow, 0, 0);
     for (int i = 0; i < menu->options.size(); ++i) {
-        if ( &menu->options[i] == menu->currentItem ) {
+        if (menu->options[i] == *menu->currentItem ) {
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "----->");
             mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 9, "%s", menu->currentItem->c_str() );
         } else { 
@@ -107,13 +107,16 @@ void View::drawBoard(Board *board){
 };
 
 void View::drawLoginBoard(Player *player) {
+    wclear(player->loginWiondow);
     box(player->loginWiondow, '9', '4');
+
+    mvwprintw(player->loginWiondow, 1, 2, "login - %s", player->login.c_str());
+    mvwprintw(player->loginWiondow, 3, 2, "password - %s", player->password.c_str());
+
     wrefresh(player->loginWiondow);
 }
 
 void View::printPlayerInput(Player* player) {
- 
-
     if (player->wordCheck == true) {
         wattron(player->mainWindow, COLOR_PAIR(8));
     }
@@ -121,16 +124,12 @@ void View::printPlayerInput(Player* player) {
         wattron(player->mainWindow, COLOR_PAIR(7));
     }
     wclear(player->mainWindow);
-    wmove(player->mainWindow, 1, 3); 
 
+    mvwprintw(player->mainWindow, 1, 2, "%s", player->currentWord.c_str());
 
-    for (char c : *(player->currentWord)) { 
-        waddch(player->mainWindow, c);
-    }
     wattr_off(player->mainWindow, A_COLOR, NULL);
     box(player->mainWindow, '*', '*'); 
     wrefresh(player->mainWindow);
-    
 }
 
 void View::clearWindow(WINDOW* win) {
@@ -138,3 +137,11 @@ void View::clearWindow(WINDOW* win) {
     wrefresh(win);
 }
 
+void View::drawErrorWindow(Errors* errors){
+    wclear(errors->mainWindow);
+    box(errors->mainWindow, 'e', 'e');
+
+    mvwprintw(errors->mainWindow, 1, 2, "last - %s", errors->lastError.c_str());
+
+    wrefresh(errors->mainWindow);
+};

@@ -66,12 +66,12 @@ void LoginState::enterLogin(Player *player)
     
     while(key != 10){//10 is enter
         draw();
-        key = controller->view->getLetter();
+        key = controller->view->getKey();
         
-        if(key == 7 && player->login.size() > 0)
+        if(key == KEY_BACKSPACE && player->login.size() > 0)
         {
             player->login.pop_back();
-        }else if (key != 7 && key != 10) // 7 is a backspace
+        }else if (key != KEY_BACKSPACE && key != 10) // 7 is a backspace
         {
             player->login.push_back(key);
         }
@@ -83,12 +83,12 @@ void LoginState::enterPassword(Player *player)
     
     while(key != 10){
         draw();
-        key = controller->view->getLetter();
+        key = controller->view->getKey();
         
-        if(key == 7 && player->password.size() > 0)
+        if(key == KEY_BACKSPACE && player->password.size() > 0)
         {
             player->password.pop_back();
-        }else if (key != 7 && key != 10)
+        }else if (key != KEY_BACKSPACE && key != 10)
         {
             player->password.push_back(key);
         }

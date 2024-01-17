@@ -20,7 +20,7 @@ public:
 
     // it can be changeg, instaeda of model maybe some class(Messages).
     void drawErrorWindow(Errors *);
-    char getLetter();
+    int getLetter();
     int getControlKey(); 
     void clear();
 

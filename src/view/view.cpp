@@ -30,13 +30,11 @@ int View::getKey()
     return key;
 }
 
-char View::getLetter(){
+int View::getLetter(){
     int letter;
     do {
         letter = getch();
-    } while ((letter < 'a' || letter > 'z') &&
-            letter == KEY_ENTER && letter != ' ' && 
-            letter != 27 && letter != KEY_BACKSPACE);
+    } while (letter < ' ' || letter > '~' && letter != KEY_BACKSPACE);
     return letter;
 }
 
@@ -119,8 +117,6 @@ void View::drawLoginBoard(Player *player) {
 }
 
 void View::printPlayerInput(Player* player) {
- 
-
     if (player->wordCheck == true) {
         wattron(player->mainWindow, COLOR_PAIR(8));
     }
@@ -128,16 +124,12 @@ void View::printPlayerInput(Player* player) {
         wattron(player->mainWindow, COLOR_PAIR(7));
     }
     wclear(player->mainWindow);
-    wmove(player->mainWindow, 1, 3); 
 
+    mvwprintw(player->mainWindow, 1, 2, "%s", player->currentWord.c_str());
 
-    for (char c : *(player->currentWord)) { 
-        waddch(player->mainWindow, c);
-    }
     wattr_off(player->mainWindow, A_COLOR, NULL);
     box(player->mainWindow, '*', '*'); 
     wrefresh(player->mainWindow);
-    
 }
 
 void View::clearWindow(WINDOW* win) {

@@ -34,7 +34,7 @@ int View::getLetter(){
     int letter;
     do {
         letter = getch();
-    } while (letter < ' ' || letter > '~' && letter != KEY_BACKSPACE);
+    } while ((letter < ' ' || letter > '~') && letter != KEY_BACKSPACE);
     return letter;
 }
 

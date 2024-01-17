@@ -16,16 +16,12 @@ void GameState::draw()
 void GameState::handleInput()
 {
     draw();
-    static int letterIndex = 0;
-    static int wordIndex = 0;
-
     int key = controller->view->getLetter();
-
-    if (key == ' ') { // space key
+    if (key == ' ' && controller->model->player->wordCheck) { // space key
         controller->model->board->changeCurrentWord(1);
         controller->view->clearWindow(controller->model->player->mainWindow);
         controller->model->player->currentWord.clear();
-    }else if(key == KEY_BACKSPACE && 
+    }else if(key == KEY_BACKSPACE &&
         controller->model->player->currentWord.size() > 0){
         controller->model->player->currentWord.pop_back();
         checkWord();

@@ -5,21 +5,30 @@
 #include <vector>
 #include <list>
 #include <ncurses.h>
+#include <ctime>
+#include <chrono>
 
 class Player
 {
 public:
+
+
     WINDOW *mainWindow;
     WINDOW *loginWiondow;
-    WINDOW *exceptionWindow;
+
     std::string login = "";
     std::string password = "";
-    bool entered = false;
     std::string currentWord;
-    bool wordCheck;
+
+    std::chrono::high_resolution_clock::time_point start_time;
+    std::chrono::milliseconds game_duration;
+
+    bool entered = false;    
+    bool wordCheck = false;
+    int speed = 0;
 
     Player() : mainWindow(nullptr), currentWord("") {
-        // ...
+        
     }
 };
 

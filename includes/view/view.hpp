@@ -19,7 +19,7 @@ public:
     void drawLoginBoard(Player *);
 
     // it can be changeg, instaeda of model maybe some class(Messages).
-    void drawErrorWindow(Errors *);
+    void drawErrorWindow(Messeges *);
     int getLetter();
     int getControlKey(); 
     void clear();

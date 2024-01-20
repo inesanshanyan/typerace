@@ -1,58 +1,8 @@
 [
     {
         "login": "admin",
-        "password": "admin"
-    },
-    {
-        "login": "user",
-        "password": "user"
-    },
-    {
-        "login": "new",
-        "password": "new"
-    },
-    {
-        "login": "hello f",
-        "password": "hello f"
-    },
-    {
-        "login": "bla",
-        "password": "bla"
-    },
-    {
-        "login": "pro",
-        "password": "pro"
-    },
-    {
-        "login": "blaa",
-        "password": "blaa"
-    },
-    {
-        "login": "hell",
-        "password": "hell"
-    },
-    {
-        "login": "nazar",
-        "password": "nazar"
-    },
-    {
-        "login": "blooooo",
-        "password": "blooooo"
-    },
-    {
-        "login": "hello",
-        "password": "hello"
-    },
-    {
-        "login": "sdsdsds",
-        "password": "dsds"
-    },
-    {
-        "login": "",
-        "password": ""
-    },
-    {
-        "login": "dsds",
-        "password": "sds"
+        "password": "admin",
+        "best_speed": 0,
+        "results": [0]
     }
 ]

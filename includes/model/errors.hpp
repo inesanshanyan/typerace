@@ -6,10 +6,10 @@
 #include <list>
 #include <ncurses.h>
 
-class Errors
+class Messeges
 {
 public:
     WINDOW *mainWindow;
-    std::string lastError = "hello darkness my old firend.";
+    std::string lastError = "";
 };
 #endif

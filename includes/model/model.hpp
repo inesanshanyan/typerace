@@ -15,7 +15,7 @@ public:
     Player* player;
     Board* board;
     Menu* menu;
-    Errors* errors;
+    Messeges* errors;
 
     Model();
     Json getUsers();

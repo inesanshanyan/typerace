@@ -13,7 +13,7 @@ void MessageState::draw()
 void MessageState::handleInput()
 {
     draw();
-    if(controller->view->getLetter() == 'q'){
+    if(controller->view->getLetter() == 27){ // 27 is ESC
         controller->state = controller->prevState.back();
     };
 }

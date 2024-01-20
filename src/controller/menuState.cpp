@@ -19,11 +19,12 @@ void MenuState::handleInput()
         {
             if (controller->model->player->entered)
             {
+                controller->model->player->start_time = std::chrono::high_resolution_clock::now();
                 controller->view->clear();
                 controller->state = new GameState(controller);
                 controller->prevState.push_back(controller->state);
             }else{
-                controller->model->errors->lastError = "you're not logged ed please login before playing. (press 'q' for quite)";
+                controller->model->errors->lastError = "Login before start Game.\n Press 'q' for back.";
                 controller->view->clear();
                 controller->state = new MessageState(controller);
             }

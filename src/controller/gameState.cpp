@@ -1,6 +1,7 @@
 #include "../includes/controller/controller.hpp"
 #include <ncurses.h>
- 
+#include <chrono>
+#include <ctime>
 
 GameState::GameState(Controller *controller)
 {
@@ -11,30 +12,42 @@ void GameState::draw()
 {
     controller->view->drawGame(controller->model->board, controller->model->player);
     controller->view->drawBoard(controller->model->board);
+    controller->view->printPlayerInput(controller->model->player);
 }
 
 void GameState::handleInput()
 {
+
     draw();
-    static int letterIndex = 0;
-    static int wordIndex = 0;
-
     int key = controller->view->getLetter();
+    if (key == ' ' && controller->model->player->wordCheck) {
+        if (controller->model->board->activeWord == &controller->model->board->content[controller->model->board->content.size() - 1])
+        {
+            auto end_time = std::chrono::high_resolution_clock::now();
+            controller->model->player->game_duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - controller->model->player->start_time);
 
-    if (key == ' ') { // space key
+            controller->model->errors->lastError = "you have typein in  " + std::to_string(controller->model->player->game_duration.count())  + " milliseconds.";
+            controller->state = new MessageState(controller);
+        }
         controller->model->board->changeCurrentWord(1);
         controller->view->clearWindow(controller->model->player->mainWindow);
         controller->model->player->currentWord.clear();
-    }else if(key == KEY_BACKSPACE && 
+    }else if(key == KEY_BACKSPACE &&
         controller->model->player->currentWord.size() > 0){
         controller->model->player->currentWord.pop_back();
         checkWord();
     }
-    else if(key != KEY_BACKSPACE){
+    else if(key != KEY_BACKSPACE && key != 27){
         controller->model->player->currentWord.push_back(key);
         checkWord();
     }
-    controller->view->printPlayerInput(controller->model->player);
+    else if (key == 27){// ESC
+        auto it = std::find_if(controller->prevState.begin(), controller->prevState.end(), [](State* s) {
+            // Replace MenuState with the actual class name you are looking for
+            return dynamic_cast<MenuState*>(s) != nullptr;
+        });
+        // controller->state = controller->prevState[0];// TODO change it in the future.
+    }
 }
 
 void GameState::checkWord()

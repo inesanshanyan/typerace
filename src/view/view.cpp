@@ -34,7 +34,9 @@ int View::getLetter(){
     int letter;
     do {
         letter = getch();
-    } while ((letter < ' ' || letter > '~') && letter != KEY_BACKSPACE);
+    } while ((letter < ' ' || letter > '~') &&
+            letter != KEY_BACKSPACE &&
+            letter != 27);
     return letter;
 }
 
@@ -76,7 +78,7 @@ void View::drawMenu(Menu *menu)
 
 void View::clear()
 {
-    wclear(stdscr);
+    // wclear(stdscr);
 }
 
 void View::drawBoard(Board *board){
@@ -137,7 +139,7 @@ void View::clearWindow(WINDOW* win) {
     wrefresh(win);
 }
 
-void View::drawErrorWindow(Errors* errors){
+void View::drawErrorWindow(Messeges* errors){
     wclear(errors->mainWindow);
     box(errors->mainWindow, 'e', 'e');
 

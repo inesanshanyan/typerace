@@ -6,7 +6,7 @@ Model::Model(){
     menu = new Menu();
     board = new Board();
     player = new Player();
-    errors = new Errors();
+    errors = new Messeges();
 
     // this part is not connected with model but now it will be here.
     //TODO change this numbers to constants ----------

@@ -23,14 +23,16 @@ void LoginState::handleInput()
                 user["password"] == controller->model->player->password)
             {
                 controller->model->player->entered = true;
-                controller->state = new GameState(controller);
+                controller->state = controller->prevState[0];
             }
         }
         if (!controller->model->player->entered)
         {
+            controller->model->player->login = "";
+            controller->model->player->password = "";
+            controller->model->errors->lastError = "You entered a wrong Login or password.";
             controller->state = new MessageState(controller);
         }
-        
     }else if (*controller->model->menu->currentItem == "sign in")
     {
         Json users = controller->model->getUsers();

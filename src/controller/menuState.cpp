@@ -19,6 +19,7 @@ void MenuState::handleInput()
         {
             if (controller->model->player->entered)
             {
+                controller->model->player->start_time = std::chrono::high_resolution_clock::now();
                 controller->view->clear();
                 controller->state = new GameState(controller);
                 controller->prevState.push_back(controller->state);

@@ -8,6 +8,7 @@
 #include "gameState.hpp"
 #include "loginState.hpp"
 #include "messageState.hpp"
+#include "statsState.hpp"
 #include <vector>
 
 class Controller {

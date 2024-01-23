@@ -20,6 +20,7 @@ public:
     Model();
     Json getUsers();
     void setUsers(const Json& );
+    Json getCurrentUser();
     std::vector<std::string> getContentFromFile(const std::string&);
 };
 

@@ -15,7 +15,7 @@ public:
     std::vector<std::vector<std::string>> prevItems;
 
     Menu(){
-        options = {"start", "login", "pause", "end"};
+        options = {"start", "login", "pause", "stats", "end"};
         prevItems.push_back(options);
         currentItem = options.begin();
     };

@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\includes",
+    "\\includes\\controller",
+    "\\includes\\view",
+    "\\other",
+    "\\src",
+    "\\src\\controller",
+    "\\src\\model",
+    "\\src\\view",
+    "\\userdata"
   ],
+  "SelectedNode": "\\includes\\controller\\gameState.hpp",
   "PreviewInSolutionExplorer": false
 }

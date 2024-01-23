@@ -1,8 +1,23 @@
 [
     {
+        "best_speed": 0,
         "login": "admin",
         "password": "admin",
-        "best_speed": 0,
-        "results": [0]
+        "speed": [
+            0
+        ]
+    },
+    {
+        "login": "b",
+        "password": "b",
+        "speed": [
+            2,
+            2,
+            7
+        ]
+    },
+    {
+        "login": "1",
+        "password": "2"
     }
 ]

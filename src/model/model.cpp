@@ -64,3 +64,22 @@ void Model::setUsers(const Json& users)
     }
     file.close(); 
 }
+
+Json Model::getCurrentUser()
+{
+    std::ifstream file("userdata/users.json");
+    if (!file.is_open()) {
+        abort();
+    }
+    Json users = getUsers();  
+    Json currentUser;
+
+    for (const auto& user : users) {
+        if (user["login"].get<std::string>() == player->login) {
+            currentUser = user;
+            break;      
+        }
+    }
+    file.close();
+    return currentUser;
+}

@@ -26,6 +26,7 @@ public:
     bool entered = false;    
     bool wordCheck = false;
     int speed = 0;
+    int maxSpeed = 0;
 
     Player() : mainWindow(nullptr), currentWord("") {
         

@@ -12,6 +12,7 @@ public:
     void draw() override;
     void handleInput() override;
     void checkWord();
+    void setSpeed(int);
 };
 
 

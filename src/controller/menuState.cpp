@@ -29,7 +29,8 @@ void MenuState::handleInput()
                 controller->state = new MessageState(controller);
             }
             
-        }else if(*controller->model->menu->currentItem == "results")
+        }
+        else if(*controller->model->menu->currentItem == "results")
         {
             // change to another state.
         }else if(*controller->model->menu->currentItem == "login")
@@ -44,6 +45,9 @@ void MenuState::handleInput()
         {
             controller->state = new LoginState(controller);
         }
+        else if (*controller->model->menu->currentItem == "stats") {
+            controller->state = new StatsState(controller);
+        }
     }else if (key == KEY_UP){
         controller->model->menu->changeOption(0);
     }else if(key == KEY_DOWN){
@@ -51,7 +55,7 @@ void MenuState::handleInput()
     }else if(key == KEY_LEFT){
         changeMenuState();
     }
-};
+    };
 
 void MenuState::changeMenuState(const std::vector<std::string> options)
 {

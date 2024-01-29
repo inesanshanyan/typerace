@@ -11,6 +11,6 @@
     "\\src\\view",
     "\\userdata"
   ],
-  "SelectedNode": "\\includes\\controller\\gameState.hpp",
+  "SelectedNode": "\\src\\controller\\statsState.cpp",
   "PreviewInSolutionExplorer": false
 }

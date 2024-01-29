@@ -6,7 +6,8 @@
 #include <list>
 #include <ncurses.h>
 #include <ctime>
-#include <chrono>
+#include <chrono> 
+#include "../../json/single_include/nlohmann/json.hpp"
 
 class Player
 {
@@ -27,6 +28,7 @@ public:
     bool wordCheck = false;
     int speed = 0;
     int maxSpeed = 0;
+    nlohmann::json currentUser;
 
     Player() : mainWindow(nullptr), currentWord("") {
         

@@ -6,7 +6,6 @@
 class StatsState : public State {
 private:
     Controller* controller;
-    Json currentUser;
 
 public:
     StatsState(Controller* controller);
@@ -14,6 +13,7 @@ public:
     void draw() override;
     void handleInput() override;
     void countStats();
+    void setMaxSpeed(int);
 };
 
 #endif

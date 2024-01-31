@@ -28,7 +28,8 @@ void GameState::handleInput()
 
             controller->model->errors->lastError = "you have typein in  " + std::to_string(controller->model->player->game_duration.count())  + " milliseconds.";
             setSpeed(controller->model->player->game_duration.count());
-            controller->state = new MessageState(controller);
+            //controller->state = new MessageState(controller);
+            controller->state = new MenuState(controller);
         }
         controller->model->board->changeCurrentWord(1);
         controller->view->clearWindow(controller->model->player->mainWindow);
@@ -74,13 +75,13 @@ void GameState::changeState(){
 };
 
 void GameState::setSpeed(int time) {
-    Json currentUser = controller->model->getCurrentUser();
-    auto currentSpeed = (time / 1000) / controller->model->board->content.back().size();
-    currentUser["speed"].push_back(currentSpeed);
+    controller->model->player->currentUser = controller->model->getCurrentUser();
+    double currentSpeed = (time / 1000) / controller->model->board->content.back().size();
+    controller->model->player->currentUser["speed"].push_back(currentSpeed);
     Json users = controller->model->getUsers();
     for (auto& user : users) {
         if (user["login"].get<std::string>() == controller->model->player->login) {
-            user = currentUser;
+            user = controller->model->player->currentUser;
             break;
         }
     }

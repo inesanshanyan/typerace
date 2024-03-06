@@ -8,6 +8,11 @@ StatsState::StatsState(Controller* controller)
     //check if there is a currentUser if not open the "you need to login" window
 }
 
+StatsState& StatsState::getInstance(Controller* controller){
+    static StatsState instance(controller);
+    return instance;
+}
+
 void StatsState::draw(){
     if (controller->model->player->currentUser.empty()) {
         controller->model->errors->lastError = "log in to view stats";
@@ -16,7 +21,7 @@ void StatsState::draw(){
         countStats();
     }
     controller->state = controller->prevState[0];
-    controller->state = new MessageState(controller);
+    controller->state = &MessageState::getInstance(controller);
     //controller->view->drawErrorWindow(controller->model->errors);
 
 }

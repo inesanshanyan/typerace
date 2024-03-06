@@ -4,7 +4,7 @@ Controller::Controller(Model* modelPtr, View* viewPtr)
 {
     model = modelPtr;
     view = viewPtr;
-    state = new MenuState(this);
+    state = &MenuState::getInstance(this);
     prevState.push_back(state);
 }
 

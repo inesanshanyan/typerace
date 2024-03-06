@@ -8,11 +8,16 @@ class LoginState : public State
 private:
     void enterLogin(Player *);
     void enterPassword(Player *);
+    LoginState() = default;
+protected:
+    LoginState(Controller *);
 public:
-    LoginState(Controller *controller);
     void changeState() override;
     void draw() override;
     void handleInput() override;
+    static LoginState& getInstance(Controller*);
+    LoginState(const Controller&) = delete;
+    LoginState& operator=(const Controller&) = delete;
 };
 
 #endif

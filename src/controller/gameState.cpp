@@ -29,7 +29,7 @@ void GameState::handleInput()
             controller->model->errors->lastError = "you have typein in  " + std::to_string(controller->model->player->game_duration.count())  + " milliseconds.";
             setSpeed(controller->model->player->game_duration.count());
             //controller->state = new MessageState(controller);
-            controller->state = new MenuState(controller);
+            controller->state = &MenuState::getInstance(controller);
         }
         controller->model->board->changeCurrentWord(1);
         controller->view->clearWindow(controller->model->player->mainWindow);

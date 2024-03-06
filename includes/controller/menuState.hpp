@@ -6,12 +6,19 @@
 class MenuState : public State 
 {
 public:
-    MenuState (Controller *);
     void draw() override;
     void changeState() override;
     void handleInput() override;
     void changeMenuState(const std::vector<std::string> options);
     void changeMenuState();
+    static MenuState& getInstance(Controller*);
+    MenuState(const MenuState&) = delete;
+    MenuState& operator=(const MenuState&) = delete;
+
+protected:
+    MenuState (Controller *);
+private:
+    MenuState() = default;
 };
 
 #endif

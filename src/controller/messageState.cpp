@@ -5,6 +5,11 @@ MessageState::MessageState(Controller *controller)
     this->controller = controller;
 };
 
+MessageState& MessageState::getInstance(Controller* controller) {
+    static MessageState instance(controller);
+    return instance;
+}
+
 void MessageState::draw()
 {
     controller->view->drawErrorWindow(controller->model->errors);

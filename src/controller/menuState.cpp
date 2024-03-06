@@ -5,6 +5,11 @@ MenuState::MenuState(Controller *controller)
     this->controller = controller;
 };
 
+MenuState& MenuState::getInstance(Controller* controller) {
+    static MenuState instance(controller);
+    return instance;
+}
+
 void MenuState::draw()
 {
     controller->view->drawMenu(controller->model->menu);
@@ -26,7 +31,7 @@ void MenuState::handleInput()
             }else{
                 controller->model->errors->lastError = "Login before start Game.\n Press 'q' for back.";
                 controller->view->clear();
-                controller->state = new MessageState(controller);
+                controller->state = &MessageState::getInstance(controller);
             }
             
         }
@@ -43,10 +48,10 @@ void MenuState::handleInput()
         else if(*controller->model->menu->currentItem == "sign up" || 
                 *controller->model->menu->currentItem == "sign in")
         {
-            controller->state = new LoginState(controller);
+            controller->state = &LoginState::getInstance(controller);
         }
         else if (*controller->model->menu->currentItem == "stats") {
-            controller->state = new StatsState(controller);
+            controller->state = &StatsState::getInstance(controller);
         }
     }else if (key == KEY_UP){
         controller->model->menu->changeOption(0);

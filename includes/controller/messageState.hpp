@@ -16,6 +16,7 @@ protected:
     MessageState(Controller *controller);
 private:
     MessageState() = default;
+    static MessageState* instance;
 
 };
 

@@ -1,13 +1,17 @@
 #include "../includes/controller/controller.hpp"
 
+MessageState* MessageState::instance = nullptr;
+
 MessageState::MessageState(Controller *controller)
 {
     this->controller = controller;
 };
 
 MessageState& MessageState::getInstance(Controller* controller) {
-    static MessageState instance(controller);
-    return instance;
+    if(instance == nullptr){
+        instance = new MessageState(controller);
+    }
+    return *instance;
 }
 
 void MessageState::draw()

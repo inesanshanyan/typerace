@@ -9,6 +9,7 @@ private:
     void enterLogin(Player *);
     void enterPassword(Player *);
     LoginState() = default;
+    static LoginState* instance;
 protected:
     LoginState(Controller *);
 public:

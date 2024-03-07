@@ -7,6 +7,7 @@ class StatsState : public State {
 private:
     Controller* controller;
     StatsState() = default;
+    static StatsState* instance;
 protected:
     StatsState(Controller*);
 public:

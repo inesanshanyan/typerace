@@ -1,14 +1,19 @@
 #include "../includes/controller/controller.hpp"
 #include <ncurses.h>
 
+LoginState* LoginState::instance = nullptr;
+
 LoginState::LoginState(Controller *controller)
 {
     this->controller = controller;
 }
-LoginState& LoginState::getInstance(Controller* controller){
-    static LoginState instatce(controller);
-    return instatce;
-} 
+LoginState& LoginState::getInstance(Controller* controller) {
+    if(instance == nullptr){
+        instance = new LoginState(controller);
+    }
+    return *instance;
+}
+
 
 void LoginState::draw(){
     controller->view->drawLoginBoard(controller->model->player);

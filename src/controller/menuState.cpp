@@ -1,13 +1,18 @@
 #include "../includes/controller/controller.hpp"
 #include <ncurses.h>
+
+MenuState* MenuState::instance = nullptr;
+
 MenuState::MenuState(Controller *controller)
 {
     this->controller = controller;
 };
 
 MenuState& MenuState::getInstance(Controller* controller) {
-    static MenuState instance(controller);
-    return instance;
+    if(instance == nullptr){
+        instance =  new MenuState(controller);
+    }
+    return *instance;
 }
 
 void MenuState::draw()

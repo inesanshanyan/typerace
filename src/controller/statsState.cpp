@@ -1,6 +1,8 @@
 #include "../includes/controller/controller.hpp"
 #include <ncurses.h>
 
+StatsState* StatsState::instance = nullptr;
+
 StatsState::StatsState(Controller* controller)
 {
     this->controller = controller;
@@ -9,8 +11,10 @@ StatsState::StatsState(Controller* controller)
 }
 
 StatsState& StatsState::getInstance(Controller* controller){
-    static StatsState instance(controller);
-    return instance;
+    if(instance == nullptr){
+        instance = new StatsState(controller);
+    }
+    return *instance;
 }
 
 void StatsState::draw(){

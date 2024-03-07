@@ -19,6 +19,7 @@ protected:
     MenuState (Controller *);
 private:
     MenuState() = default;
+    static MenuState* instance;
 };
 
 #endif

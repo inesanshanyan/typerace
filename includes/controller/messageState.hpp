@@ -6,10 +6,18 @@
 class MessageState : public State 
 {
 public:
-    MessageState(Controller *controller);
     void changeState() override;
     void draw() override;
     void handleInput() override;
+    static MessageState& getInstance(Controller *);
+    MessageState(const Controller&) = delete;
+    MessageState& operator=(const Controller&) = delete;
+protected:
+    MessageState(Controller *controller);
+private:
+    MessageState() = default;
+    static MessageState* instance;
+
 };
 
 #endif

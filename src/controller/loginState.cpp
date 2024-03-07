@@ -1,10 +1,19 @@
 #include "../includes/controller/controller.hpp"
 #include <ncurses.h>
 
+LoginState* LoginState::instance = nullptr;
+
 LoginState::LoginState(Controller *controller)
 {
     this->controller = controller;
 }
+LoginState& LoginState::getInstance(Controller* controller) {
+    if(instance == nullptr){
+        instance = new LoginState(controller);
+    }
+    return *instance;
+}
+
 
 void LoginState::draw(){
     controller->view->drawLoginBoard(controller->model->player);
@@ -31,7 +40,7 @@ void LoginState::handleInput()
             controller->model->player->login = "";
             controller->model->player->password = "";
             controller->model->errors->lastError = "You entered a wrong Login or password.";
-            controller->state = new MessageState(controller);
+            controller->state = &MessageState::getInstance(controller);
         }
     }else if (*controller->model->menu->currentItem == "sign in")
     {
@@ -56,7 +65,7 @@ void LoginState::handleInput()
         } else{
             
         }
-        controller->state = new MenuState(controller);
+        controller->state = &MenuState::getInstance(controller);
     }
 }
 

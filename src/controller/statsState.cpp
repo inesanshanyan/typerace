@@ -1,11 +1,20 @@
 #include "../includes/controller/controller.hpp"
 #include <ncurses.h>
 
+StatsState* StatsState::instance = nullptr;
+
 StatsState::StatsState(Controller* controller)
 {
     this->controller = controller;
     controller->model->player->currentUser = controller->model->getCurrentUser();
     //check if there is a currentUser if not open the "you need to login" window
+}
+
+StatsState& StatsState::getInstance(Controller* controller){
+    if(instance == nullptr){
+        instance = new StatsState(controller);
+    }
+    return *instance;
 }
 
 void StatsState::draw(){
@@ -16,7 +25,7 @@ void StatsState::draw(){
         countStats();
     }
     controller->state = controller->prevState[0];
-    controller->state = new MessageState(controller);
+    controller->state = &MessageState::getInstance(controller);
     //controller->view->drawErrorWindow(controller->model->errors);
 
 }

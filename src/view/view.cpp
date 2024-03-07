@@ -64,6 +64,7 @@ void View::drawGame(Board *board, Player * player)
 void View::drawMenu(Menu *menu)
 {
     wclear(menu->mainWindow);
+    wrefresh(menu->mainWindow);
     box(menu->mainWindow, 0, 0);
     for (int i = 0; i < menu->options.size(); ++i) {
         if (menu->options[i] == *menu->currentItem ) {

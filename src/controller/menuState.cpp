@@ -66,11 +66,14 @@ void MenuState::changeMenuState(const std::vector<std::string> options)
 
 void MenuState::changeMenuState()
 {  
-    controller->model->menu->prevItems.pop_back();
-    controller->model->menu->options = controller->model->menu->prevItems.back();
-    controller->model->menu->currentItem = controller->model->menu->options.begin();
+    if (controller->model->menu->prevItems.size() > 1)
+    {
+        controller->model->menu->prevItems.pop_back();
+        controller->model->menu->options = controller->model->menu->prevItems.back();
+        controller->model->menu->currentItem = controller->model->menu->options.begin();
+    }   
 }
 
 void MenuState::changeState(){
     // con.begin()ller->state = new GameState(controller);
-};
+}

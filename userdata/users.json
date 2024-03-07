@@ -25,5 +25,18 @@
     {
         "login": "a",
         "password": "a"
+    },
+    {
+        "best_speed": 26,
+        "login": "axpers",
+        "password": "axpers",
+        "speed": [
+            2.0,
+            26.666666666666668,
+            20.0,
+            24.0,
+            24.0,
+            20.0
+        ]
     }
 ]

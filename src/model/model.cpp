@@ -10,7 +10,7 @@ Model::Model(){
 
     // this part is not connected with model but now it will be here.
     //TODO change this numbers to constants ----------
-    menu->mainWindow = newwin(15, 20, 5, 5);
+    menu->mainWindow = newwin(15, 20, 10, 20);
     board->mainWindow = newwin(20, 70, 0, 40);
     errors->mainWindow = newwin(10, 40, 0, 30);
     player->mainWindow = newwin(4, 70, 20, 40);

@@ -20,7 +20,7 @@ public:
         currentItem = options.begin();
     };
 
-    //TODO WRITE THIS DUNCTION inside a cpp file
+    //TODO WRITE THIS FUNCTION inside a cpp file
     void changeOption(int key)
     {
         // Check the value of key and update currentItem accordingly

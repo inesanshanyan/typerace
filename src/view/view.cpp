@@ -1,9 +1,5 @@
 #include "../includes/view/view.hpp"
 
-#define _window_height 10
-#define _window_width 30
-
-
 View::View()
 {
     initscr();
@@ -68,10 +64,10 @@ void View::drawMenu(Menu *menu)
     box(menu->mainWindow, 0, 0);
     for (int i = 0; i < menu->options.size(); ++i) {
         if (menu->options[i] == *menu->currentItem ) {
-            mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "----->");
-            mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 9, "%s", menu->currentItem->c_str() );
+            mvwprintw(menu->mainWindow, (i + 0.5) * MENU_MAIN_WINDOW_H / menu->options.size(), 2, "----->");
+            mvwprintw(menu->mainWindow, (i + 0.5) * MENU_MAIN_WINDOW_H / menu->options.size(), 9, "%s", menu->currentItem->c_str() );
         } else { 
-            mvwprintw(menu->mainWindow, (i + 0.5) * _window_height / menu->options.size(), 2, "%s", menu->options[i].c_str());
+            mvwprintw(menu->mainWindow, (i + 0.5) * MENU_MAIN_WINDOW_H / menu->options.size(), 2, "%s", menu->options[i].c_str());
         }
     }
     wrefresh(menu->mainWindow);

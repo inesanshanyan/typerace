@@ -12,8 +12,6 @@
 class Player
 {
 public:
-
-
     WINDOW *mainWindow;
     WINDOW *loginWiondow;
 

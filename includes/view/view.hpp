@@ -1,6 +1,7 @@
 #ifndef GAMEVIEW_HPP
 #define GAMEVIEW_HPP
 
+#include "../includes/model/model.hpp"
 #include "../includes/model/menu.hpp"
 #include "../includes/model/board.hpp"
 #include "../includes/model/player.hpp"

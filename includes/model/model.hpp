@@ -33,6 +33,7 @@ public:
     Player* player;
     Board* board;
     Menu* menu;
+    Menu* settingMenu;// please confirm that this is normal. let me know.
     Messeges* errors;
 
     Model();

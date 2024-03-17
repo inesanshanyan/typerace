@@ -34,7 +34,7 @@ void MenuState::handleInput()
                 controller->state = new GameState(controller);
                 controller->prevState.push_back(controller->state);
             }else{
-                controller->model->errors->lastError = "Login before start Game.\n Press 'q' for back.";
+                controller->model->errors->lastError = "Login before start Game.\n Press Esc for back go.";
                 controller->view->clear();
                 controller->state = &MessageState::getInstance(controller);
             }
@@ -58,6 +58,9 @@ void MenuState::handleInput()
         else if (*controller->model->menu->currentItem == "stats") {
             controller->state = &StatsState::getInstance(controller);
         }
+        else if (*controller->model->menu->currentItem == "settings") {
+            controller->state = &SettingState::getInstance(controller);
+        }
     }else if (key == KEY_UP){
         controller->model->menu->changeOption(0);
     }else if(key == KEY_DOWN){
@@ -65,7 +68,7 @@ void MenuState::handleInput()
     }else if(key == KEY_LEFT){
         changeMenuState();
     }
-    };
+};
 
 void MenuState::changeMenuState(const std::vector<std::string> options)
 {

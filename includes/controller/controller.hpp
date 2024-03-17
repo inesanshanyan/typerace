@@ -9,6 +9,7 @@
 #include "loginState.hpp"
 #include "messageState.hpp"
 #include "statsState.hpp"
+#include "settingState.hpp"
 #include <vector>
 
 class Controller {

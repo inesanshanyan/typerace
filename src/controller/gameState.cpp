@@ -58,9 +58,7 @@ void GameState::checkWord()
     for (size_t i = 0; i < controller->model->player->currentWord.size(); i++)
     {   
         if (controller->model->player->currentWord[i] != controller->model->board->activeWord->c_str()[i])
-        {
             checked = false;
-        }
     }
     if (checked)
     {

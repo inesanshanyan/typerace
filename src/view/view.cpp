@@ -73,6 +73,11 @@ void View::drawMenu(Menu *menu)
     wrefresh(menu->mainWindow);
 }
 
+void View::drawSettingOptions(std::vector<std::string> *options)
+{
+
+}
+
 void View::clear()
 {
     // wclear(stdscr);
@@ -115,7 +120,10 @@ void View::drawLoginBoard(Player *player) {
     wrefresh(player->loginWiondow);
 }
 
-void View::printPlayerInput(Player* player) {
+
+
+void View::printPlayerInput(Player *player)
+{
     if (player->wordCheck == true) {
         wattron(player->mainWindow, COLOR_PAIR(8));
     }

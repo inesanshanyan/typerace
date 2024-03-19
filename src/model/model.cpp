@@ -11,8 +11,6 @@ std::pair<int, int> get_screen_size()
 }
 
 Model::Model(){
-    menu = new Menu({"start", "login", "pause", "stats", "settings","end"});
-    settingMenu = new Menu({"speed type", "mode"});
     board = new Board();
     player = new Player();
     errors = new Messeges();
@@ -22,14 +20,6 @@ Model::Model(){
     std::pair<int, int> screen_size(0,0);
     screen_size = get_screen_size();
 
-    menu->mainWindow = newwin(MENU_MAIN_WINDOW_H,
-                        MENU_MAIN_WINDOW_W,
-                        (screen_size.first / 2) - (MENU_MAIN_WINDOW_H / 2),
-                        (screen_size.second / 2) - (MENU_MAIN_WINDOW_W / 2));
-    settingMenu->mainWindow = newwin(MENU_MAIN_WINDOW_H,
-                        MENU_MAIN_WINDOW_W,
-                        (screen_size.first / 2) - (MENU_MAIN_WINDOW_H / 2),
-                        (screen_size.second / 2) - (MENU_MAIN_WINDOW_W / 2));
     board->mainWindow = newwin(BOARD_MAIN_WINDOW_H,
                         BOARD_MAIN_WINDOW_W,
                         (screen_size.first / 2) - (BOARD_MAIN_WINDOW_H / 2),
@@ -47,6 +37,7 @@ Model::Model(){
                         (screen_size.first / 2) - (PLAYER_LOGIN_WINDOW_H / 2),
                         (screen_size.second / 2) - (PLAYER_LOGIN_WINDOW_W / 2));
     //------------------------------------------------
+    
     board->content = getContentFromFile("other/test.php");
     board->activeWord = &board->content[0];
 };

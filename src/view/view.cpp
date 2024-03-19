@@ -73,11 +73,6 @@ void View::drawMenu(Menu *menu)
     wrefresh(menu->mainWindow);
 }
 
-void View::drawSettingOptions(std::vector<std::string> *options)
-{
-
-}
-
 void View::clear()
 {
     // wclear(stdscr);

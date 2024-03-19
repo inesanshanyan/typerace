@@ -9,7 +9,7 @@ public:
     void changeState() override;
     void draw() override;
     void handleInput() override;
-    virtual Menu& getMenu() override;
+    virtual Menu* getMenu() override;
 
     static MessageState& getInstance(Controller *);
     MessageState(const Controller&) = delete;

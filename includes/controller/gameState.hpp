@@ -11,7 +11,7 @@ public:
     void changeState() override;
     void draw() override;
     void handleInput() override;
-    virtual Menu& getMenu() override;
+    virtual Menu* getMenu() override;
 
     void checkWord();
     void setSpeed(int);

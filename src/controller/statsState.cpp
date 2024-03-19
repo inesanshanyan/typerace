@@ -60,7 +60,7 @@ void StatsState::setMaxSpeed(int speed) {
     controller->model->setUsers(users);
 }
 
-Menu& getMenu()
+Menu* StatsState::getMenu()
 {
-    
+    return nullptr;
 }

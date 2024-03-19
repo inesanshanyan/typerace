@@ -31,7 +31,7 @@ void MessageState::changeState(){
     
 };
 
-Menu& getMenu()
+Menu* MessageState::getMenu()
 {
     
 }

@@ -1,11 +1,22 @@
 #include "../includes/controller/controller.hpp"
 #include <ncurses.h>
 
+
 MenuState* MenuState::instance = nullptr;
 
 MenuState::MenuState(Controller *controller)
 {
     this->controller = controller;
+
+    //TODO make it global
+    std::pair<int, int> screen_size(0,0);
+    screen_size = get_screen_size();
+    
+    menu = new Menu({"start", "login", "pause", "stats", "settings","end"});
+    menu->mainWindow = newwin(MENU_MAIN_WINDOW_H,
+                    MENU_MAIN_WINDOW_W,
+                    (screen_size.first / 2) - (MENU_MAIN_WINDOW_H / 2),
+                    (screen_size.second / 2) - (MENU_MAIN_WINDOW_W / 2));
 };
 
 MenuState& MenuState::getInstance(Controller* controller) {
@@ -17,7 +28,7 @@ MenuState& MenuState::getInstance(Controller* controller) {
 
 void MenuState::draw()
 {
-    controller->view->drawMenu(controller->model->menu);
+    controller->view->drawMenu(menu);
 };
 
 void MenuState::handleInput()
@@ -25,7 +36,7 @@ void MenuState::handleInput()
     draw();
     int key = controller->view->getControlKey();
     if(key == 10){
-        if (*controller->model->menu->currentItem == "start")
+        if (*menu->currentItem == "start")
         {
             if (controller->model->player->entered)
             {
@@ -40,31 +51,20 @@ void MenuState::handleInput()
             }
             
         }
-        else if(*controller->model->menu->currentItem == "results")
-        {
-            // change to another state.
-        }else if(*controller->model->menu->currentItem == "login")
-        {
-            changeMenuState({"sign in", "sign up"});
-        }else if(*controller->model->menu->currentItem == "results")
-        {
-            
-        }
-        else if(*controller->model->menu->currentItem == "sign up" || 
-                *controller->model->menu->currentItem == "sign in")
+        else if(*menu->currentItem == "login")
         {
             controller->state = &LoginState::getInstance(controller);
         }
-        else if (*controller->model->menu->currentItem == "stats") {
+        else if (*menu->currentItem == "stats") {
             controller->state = &StatsState::getInstance(controller);
         }
-        else if (*controller->model->menu->currentItem == "settings") {
+        else if (*menu->currentItem == "settings") {
             controller->state = &SettingState::getInstance(controller);
         }
     }else if (key == KEY_UP){
-        controller->model->menu->changeOption(0);
+        menu->changeOption(0);
     }else if(key == KEY_DOWN){
-        controller->model->menu->changeOption(1);
+        menu->changeOption(1);
     }else if(key == KEY_LEFT){
         changeMenuState();
     }
@@ -72,18 +72,18 @@ void MenuState::handleInput()
 
 void MenuState::changeMenuState(const std::vector<std::string> options)
 {
-    controller->model->menu->prevItems.push_back(options);
-    controller->model->menu->options = controller->model->menu->prevItems.back();
-    controller->model->menu->currentItem = controller->model->menu->options.begin();
+    menu->prevItems.push_back(options);
+    menu->options = menu->prevItems.back();
+    menu->currentItem = menu->options.begin();
 }
 
 void MenuState::changeMenuState()
 {  
-    if (controller->model->menu->prevItems.size() > 1)
+    if (menu->prevItems.size() > 1)
     {
-        controller->model->menu->prevItems.pop_back();
-        controller->model->menu->options = controller->model->menu->prevItems.back();
-        controller->model->menu->currentItem = controller->model->menu->options.begin();
+        menu->prevItems.pop_back();
+        menu->options = menu->prevItems.back();
+        menu->currentItem = menu->options.begin();
     }   
 }
 
@@ -91,7 +91,7 @@ void MenuState::changeState(){
     // con.begin()ller->state = new GameState(controller);
 }
 
-Menu& getMenu()
+Menu* MenuState::getMenu()
 {
     
 }

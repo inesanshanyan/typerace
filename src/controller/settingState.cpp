@@ -6,6 +6,16 @@ SettingState* SettingState::instance = nullptr;
 SettingState::SettingState(Controller *controller)
 {
     this->controller = controller;
+
+    //TODO make it globla
+    std::pair<int, int> screen_size(0,0);
+    screen_size = get_screen_size();
+
+    menu = new Menu({"speed type","mode"});
+    menu->mainWindow = newwin(MENU_MAIN_WINDOW_H,
+                    MENU_MAIN_WINDOW_W,
+                    (screen_size.first / 2) - (MENU_MAIN_WINDOW_H / 2),
+                    (screen_size.second / 2) - (MENU_MAIN_WINDOW_W / 2));
 }
 SettingState& SettingState::getInstance(Controller *controller) {
     if(instance == nullptr){
@@ -17,7 +27,7 @@ SettingState& SettingState::getInstance(Controller *controller) {
 void SettingState::draw(){
     if (isMenuOn)
     {
-        controller->view->drawMenu(controller->model->settingMenu);
+        controller->view->drawMenu(menu);
     }
 }
 
@@ -25,22 +35,12 @@ void SettingState::handleMenuInput(int key)
 {
     if(key == 10){
         isMenuOn = false;
-        if(*controller->model->settingMenu->currentItem == "speed type")
-        {
-            isTypeSpeed = true;
-            isDifficultyMode = false;
-        }
-        else if(*controller->model->settingMenu->currentItem == "mode")
-        {
-            isDifficultyMode = true;
-            isTypeSpeed = false;
-        }
     }
     else if (key == KEY_UP){
-        controller->model->settingMenu->changeOption(0);
+        menu->changeOption(0);
     }
     else if(key == KEY_DOWN){
-        controller->model->settingMenu->changeOption(1);
+        menu->changeOption(1);
     }
     else if(key == KEY_LEFT){
         controller->state = &MenuState::getInstance(controller);
@@ -64,10 +64,11 @@ void SettingState::handleInput()
     if (isMenuOn) {
         handleMenuInput(key);
     } else {
-        if(isTypeSpeed)
+        if (*menu->currentItem == "speed type")
         {
             handleSpeedTypeSelecting(key);
-        } else if (isDifficultyMode)
+        }
+        else if(*menu->currentItem == "mode")
         {
             handleDifficultyModeSelecting(key);
         }
@@ -79,7 +80,7 @@ void SettingState::changeState()
 
 }
 
-Menu& getMenu()
+Menu* SettingState::getMenu()
 {
-
+    return menu;
 }

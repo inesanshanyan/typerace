@@ -14,7 +14,8 @@ public:
     std::vector<std::string> options;
     std::vector<std::vector<std::string>> prevItems;
 
-    Menu(std::vector<std::string> options){
+    Menu(std::vector<std::string> options)
+    {
         this->options = options;
         prevItems.push_back(this->options);
         currentItem = this->options.begin();

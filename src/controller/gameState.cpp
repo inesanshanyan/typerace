@@ -85,3 +85,8 @@ void GameState::setSpeed(int time) {
     }
     controller->model->setUsers(users);
 }
+
+Menu& getMenu()
+{
+    
+}

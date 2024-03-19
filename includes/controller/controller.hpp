@@ -10,6 +10,7 @@
 #include "messageState.hpp"
 #include "statsState.hpp"
 #include "settingState.hpp"
+#include "abstractMenu.hpp"
 #include <vector>
 
 class Controller {

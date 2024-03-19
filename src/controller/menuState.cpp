@@ -90,3 +90,8 @@ void MenuState::changeMenuState()
 void MenuState::changeState(){
     // con.begin()ller->state = new GameState(controller);
 }
+
+Menu& getMenu()
+{
+    
+}

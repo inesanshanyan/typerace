@@ -6,14 +6,17 @@
 class StatsState : public State {
 private:
     Controller* controller;
-    StatsState() = default;
+    Menu menu;
     static StatsState* instance;
+    StatsState() = default;
 protected:
     StatsState(Controller*);
 public:
     void changeState() override;
     void draw() override;
     void handleInput() override;
+    virtual Menu& getMenu() override;
+
     void countStats();
     void setMaxSpeed(int);
     static StatsState& getInstance(Controller*);

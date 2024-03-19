@@ -21,7 +21,6 @@ void SettingState::draw(){
     }
 }
 
-
 void SettingState::handleMenuInput(int key)
 {
     if(key == 10){
@@ -76,6 +75,11 @@ void SettingState::handleInput()
 }
 
 void SettingState::changeState()
+{
+
+}
+
+Menu& getMenu()
 {
 
 }

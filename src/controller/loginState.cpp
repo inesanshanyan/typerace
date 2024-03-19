@@ -109,3 +109,8 @@ void LoginState::enterPassword(Player *player)
 void LoginState::changeState(){
     
 }
+
+Menu& getMenu()
+{
+    
+}

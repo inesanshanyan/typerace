@@ -30,3 +30,8 @@ void MessageState::handleInput()
 void MessageState::changeState(){
     
 };
+
+Menu& getMenu()
+{
+    
+}

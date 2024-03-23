@@ -53,7 +53,7 @@ std::vector<std::string> Model::getContentFromFile(const std::string& filename) 
         }
         file.close();
     } else {
-        std::cerr << "erorro" << filename << std::endl;
+        std::cerr << "error" << filename << std::endl;
     }
     return words;
 }
@@ -85,6 +85,34 @@ void Model::setUsers(const Json& users)
         std::cerr << "JSON parse error: " << e.what() << std::endl;
     }
     file.close(); 
+}
+
+void Model::setUserSettings(const Json &user_to_change)
+{
+    Json users = getUsers();
+    for (auto& user : users) {
+        if (user_to_change["login"] == user["login"]) 
+        { 
+            if (user_to_change.find("difficulty_mode") == user_to_change.end() && user_to_change.find("speed_type") == user_to_change.end())
+            {
+                user["difficulty_mode"] = "medium";
+                user["speed_type"] = "cpm";
+            }else if (user_to_change.find("speed_type") == user_to_change.end())
+            {
+                user["speed_type"] = "cpm";
+                user["difficulty_mode"] = user_to_change["difficulty_mode"];
+            }else if (user_to_change.find("speed_type") == user_to_change.end())
+            {
+                user["difficulty_mode"] = "medium";
+                user["speed_type"] = user_to_change["speed_type"];
+            }else {
+                user["difficulty_mode"] = user_to_change["difficulty_mode"];
+                user["speed_type"] = user_to_change["speed_type"];
+            }
+            break;
+        }
+    }
+    setUsers(users);
 }
 
 Json Model::getCurrentUser()

@@ -59,7 +59,16 @@ void MenuState::handleInput()
             controller->state = &StatsState::getInstance(controller);
         }
         else if (*menu->currentItem == "settings") {
-            controller->state = &SettingState::getInstance(controller);
+            if (controller->model->player->entered)
+            {
+                controller->state = &SettingState::getInstance(controller);
+            }
+            else
+            {
+                controller->model->errors->lastError = "Login before setting a user.";
+                controller->view->clear();
+                controller->state = &MessageState::getInstance(controller);
+            }
         }
     }else if (key == KEY_UP){
         menu->changeOption(0);

@@ -12,8 +12,8 @@ private:
     bool                        isMenuOn = true; // for checkint if drawing item is menu or selecting part. (not only drawing but also hadled key).
     bool                        isTypeSpeed = false;
     bool                        isDifficultyMode = false;
-    std::vector<std::string>    speedType = {"wpm", "cpm"};
-    std::vector<std::string>    difficultyMode = {"easy", "medium", "difficult", "insane"};
+    std::vector<std::string>    speedTypeItems = {"wpm", "cpm"};
+    std::vector<std::string>    difficultyModeItems = {"easy", "medium", "difficult", "insane"};
 
     void handleMenuInput(int key);
     void handleSpeedTypeSelecting(int key);

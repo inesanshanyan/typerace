@@ -20,7 +20,7 @@ public:
     std::string password = "";
     std::string currentWord;
     std::string speedType = "wpm";
-    std::string difficultyMode = "medium";
+    std::string difficultyMode = "easy";
 
     std::chrono::high_resolution_clock::time_point start_time;
     std::chrono::milliseconds game_duration;

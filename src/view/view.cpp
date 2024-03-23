@@ -115,7 +115,21 @@ void View::drawLoginBoard(Player *player) {
     wrefresh(player->loginWiondow);
 }
 
-
+void View::drawSelectable(WINDOW* window, std::vector<std::string> options, std::string selectedItem)
+{
+    wclear(window);
+    wrefresh(window);
+    box(window, 0, 0);
+    for (int i = 0; i < options.size(); ++i) {
+        if (options[i] == selectedItem) {
+            mvwprintw(window, (i + 0.5) * MENU_MAIN_WINDOW_H / options.size(), 2, "cuurent - ");
+            mvwprintw(window, (i + 0.5) * MENU_MAIN_WINDOW_H / options.size(), 11, "%s", selectedItem.c_str());
+        } else {
+            mvwprintw(window, (i + 0.5) * MENU_MAIN_WINDOW_H / options.size(), 2, "%s", options[i].c_str());
+        }
+    }
+    wrefresh(window);
+}
 
 void View::printPlayerInput(Player *player)
 {

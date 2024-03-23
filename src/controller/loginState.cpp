@@ -54,26 +54,28 @@ void LoginState::handleMenuInput(int key)
 
 void LoginState::handleSignUp()
 {
-    enterLogin(controller->model->player);
-    enterPassword(controller->model->player);
+    Player *player = controller->model->player;
+    enterLogin(player);
+    enterPassword(player);
 
     Json users = controller->model->getUsers();
     for (const auto& user : users) {
-        if (user["login"] == controller->model->player->login &&
-            user["password"] == controller->model->player->password)
+        if (user["login"] == player->login &&
+            user["password"] == player->password)
         {
-            controller->model->player->entered = true;
+            player->entered = true;
+            player->currentUser = user;
             controller->state = controller->prevState[0];
         }
     }
-    if (!controller->model->player->entered)
+    if (!player->entered)
     {
-        controller->model->player->login = "";
-        controller->model->player->password = "";
+        player->login = "";
+        player->password = "";
         controller->model->errors->lastError = "You entered a wrong Login or password.";
         controller->state = &MessageState::getInstance(controller);
     } else {
-        controller->model->player->start_time = std::chrono::high_resolution_clock::now();
+        player->start_time = std::chrono::high_resolution_clock::now();
         controller->view->clear();
         controller->state = new GameState(controller);
     }
@@ -82,26 +84,31 @@ void LoginState::handleSignUp()
 
 void LoginState::handleSignIn()
 {
-    enterLogin(controller->model->player);
-    enterPassword(controller->model->player);
+    Player *player = controller->model->player;
+    enterLogin(player);
+    enterPassword(player);
 
     bool flag = true;
     Json users = controller->model->getUsers();
     for (const auto& user : users) {
-        if (user["login"] == controller->model->player->login)
+        if (user["login"] == player->login)
         {
             flag = false;
         }
     }
     if (flag)
     {
+        //TODO move this part inside a model (createUser) for example (if checked let me know).
         Json newUser;
-        newUser["login"] = controller->model->player->login;
-        newUser["password"] = controller->model->player->password;
+        newUser["login"] = player->login;
+        newUser["password"] = player->password;
+        // i think below to line hould be inside a setSettings function. what you think?
+        newUser["difficulty_mode"] = "easy";
+        newUser["speed_type"] = "wpm";
         users.push_back(newUser);
         controller->model->setUsers(users);
-        controller->model->player->login = "";
-        controller->model->player->password = "";
+        player->login = "";
+        player->password = "";
     } else{
         
     }

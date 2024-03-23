@@ -73,7 +73,7 @@ void GameState::changeState(){
 };
 
 void GameState::setSpeed(int time) {
-    controller->model->player->currentUser = controller->model->getCurrentUser();
+    // controller->model->player->currentUser = controller->model->getCurrentUser(); //I move it into loginstate.
     double currentSpeed = controller->model->board->content.size() * (60 / (double)(time / 1000));
     controller->model->player->currentUser["speed"].push_back(currentSpeed);
     Json users = controller->model->getUsers();

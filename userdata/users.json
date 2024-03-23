@@ -1,39 +1,19 @@
 [
     {
         "best_speed": 0,
+        "difficulty_mode": "difficult",
         "login": "admin",
         "password": "admin",
         "speed": [
-            0
-        ]
-    },
-    {
-        "best_speed": 1,
-        "login": "b",
-        "password": "b",
-        "speed": [
             0,
-            0.0,
-            0.0,
-            1.0
-        ]
-    },
-    {
-        "best_speed": 2,
-        "login": "1",
-        "password": "2",
-        "speed": [
-            2.0,
-            1.0,
-            2.0
-        ]
-    },
-    {
-        "login": "a",
-        "password": "a"
+            24.0,
+            20.0
+        ],
+        "speed_type": "wpm"
     },
     {
         "best_speed": 26,
+        "difficulty_mode": "difficult",
         "login": "axpers",
         "password": "axpers",
         "speed": [
@@ -44,19 +24,32 @@
             24.0,
             20.0,
             13.333333333333334,
-            12.0
-        ]
+            12.0,
+            24.0,
+            10.909090909090908,
+            20.0,
+            40.0,
+            40.0,
+            60.0,
+            120.0,
+            120.0
+        ],
+        "speed_type": "wpm"
     },
     {
-        "best_speed": 0,
-        "login": "ell",
-        "password": "ell",
+        "login": "1111",
+        "password": "1111",
         "speed": [
-            0.02752924982794219
+            60.0
         ]
     },
     {
-        "login": "hell",
-        "password": "hell"
+        "difficulty_mode": "insane",
+        "login": "11111",
+        "password": "11111",
+        "speed": [
+            120.0
+        ],
+        "speed_type": "cpm"
     }
 ]

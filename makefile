@@ -42,3 +42,5 @@ directories:
 
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET)
+
+re: clean all

@@ -70,6 +70,7 @@ void View::drawMenu(Menu *menu)
             mvwprintw(menu->mainWindow, (i + 0.5) * MENU_MAIN_WINDOW_H / menu->options.size(), 2, "%s", menu->options[i].c_str());
         }
     }
+    refresh();
     wrefresh(menu->mainWindow);
 }
 
@@ -144,12 +145,13 @@ void View::printPlayerInput(Player *player)
     mvwprintw(player->mainWindow, 1, 2, "%s", player->currentWord.c_str());
 
     wattr_off(player->mainWindow, A_COLOR, NULL);
-    box(player->mainWindow, '*', '*'); 
+    box(player->mainWindow, '*', '*');
     wrefresh(player->mainWindow);
 }
 
 void View::clearWindow(WINDOW* win) {
-    wclear(win);  
+    wclear(win);
+    refresh();
     wrefresh(win);
 }
 

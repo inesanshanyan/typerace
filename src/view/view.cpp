@@ -70,6 +70,7 @@ void View::drawMenu(Menu *menu)
             mvwprintw(menu->mainWindow, (i + 0.5) * MENU_MAIN_WINDOW_H / menu->options.size(), 2, "%s", menu->options[i].c_str());
         }
     }
+    refresh();
     wrefresh(menu->mainWindow);
 }
 
@@ -115,7 +116,24 @@ void View::drawLoginBoard(Player *player) {
     wrefresh(player->loginWiondow);
 }
 
-void View::printPlayerInput(Player* player) {
+void View::drawSelectable(WINDOW* window, std::vector<std::string> options, std::string selectedItem)
+{
+    wclear(window);
+    wrefresh(window);
+    box(window, 0, 0);
+    for (int i = 0; i < options.size(); ++i) {
+        if (options[i] == selectedItem) {
+            mvwprintw(window, (i + 0.5) * MENU_MAIN_WINDOW_H / options.size(), 2, "cuurent - ");
+            mvwprintw(window, (i + 0.5) * MENU_MAIN_WINDOW_H / options.size(), 11, "%s", selectedItem.c_str());
+        } else {
+            mvwprintw(window, (i + 0.5) * MENU_MAIN_WINDOW_H / options.size(), 2, "%s", options[i].c_str());
+        }
+    }
+    wrefresh(window);
+}
+
+void View::printPlayerInput(Player *player)
+{
     if (player->wordCheck == true) {
         wattron(player->mainWindow, COLOR_PAIR(8));
     }
@@ -127,12 +145,13 @@ void View::printPlayerInput(Player* player) {
     mvwprintw(player->mainWindow, 1, 2, "%s", player->currentWord.c_str());
 
     wattr_off(player->mainWindow, A_COLOR, NULL);
-    box(player->mainWindow, '*', '*'); 
+    box(player->mainWindow, '*', '*');
     wrefresh(player->mainWindow);
 }
 
 void View::clearWindow(WINDOW* win) {
-    wclear(win);  
+    wclear(win);
+    refresh();
     wrefresh(win);
 }
 

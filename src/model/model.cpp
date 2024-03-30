@@ -11,7 +11,6 @@ std::pair<int, int> get_screen_size()
 }
 
 Model::Model(){
-    menu = new Menu();
     board = new Board();
     player = new Player();
     errors = new Messeges();
@@ -21,27 +20,24 @@ Model::Model(){
     std::pair<int, int> screen_size(0,0);
     screen_size = get_screen_size();
 
-    menu->mainWindow = newwin(MENU_MAIN_WINDOW_H,
-                               MENU_MAIN_WINDOW_W,
-                               (screen_size.first / 2) - (MENU_MAIN_WINDOW_H / 2),
-                               (screen_size.second / 2) - (MENU_MAIN_WINDOW_W / 2));
     board->mainWindow = newwin(BOARD_MAIN_WINDOW_H,
-                               BOARD_MAIN_WINDOW_W,
-                               (screen_size.first / 2) - (BOARD_MAIN_WINDOW_H / 2),
-                               (screen_size.second / 2) - (BOARD_MAIN_WINDOW_W / 2));
+                        BOARD_MAIN_WINDOW_W,
+                        (screen_size.first / 2) - (BOARD_MAIN_WINDOW_H / 2),
+                        (screen_size.second / 2) - (BOARD_MAIN_WINDOW_W / 2));
     errors->mainWindow = newwin(ERROR_MAIN_WINDOW_H,
-                               ERROR_MAIN_WINDOW_W,
-                               (screen_size.first / 2) - (ERROR_MAIN_WINDOW_H / 2),
-                               (screen_size.second / 2) - (ERROR_MAIN_WINDOW_W / 2));
+                        ERROR_MAIN_WINDOW_W,
+                        (screen_size.first / 2) - (ERROR_MAIN_WINDOW_H / 2),
+                        (screen_size.second / 2) - (ERROR_MAIN_WINDOW_W / 2));
     player->mainWindow = newwin(PLAYER_MAIN_WINDOW_H,
-                               PLAYER_MAIN_WINDOW_W,
-                               (screen_size.first / 2) - (PLAYER_MAIN_WINDOW_H / 2) + PLAYER_MAIN_WINDOW_H + 1,
-                               (screen_size.second / 2) - (PLAYER_MAIN_WINDOW_W / 2));
+                        PLAYER_MAIN_WINDOW_W,
+                        (screen_size.first / 2) - (PLAYER_MAIN_WINDOW_H / 2) + PLAYER_MAIN_WINDOW_H + 1,
+                        (screen_size.second / 2) - (PLAYER_MAIN_WINDOW_W / 2));
     player->loginWiondow = newwin(PLAYER_LOGIN_WINDOW_H,
-                               PLAYER_LOGIN_WINDOW_W,
-                               (screen_size.first / 2) - (PLAYER_LOGIN_WINDOW_H / 2),
-                               (screen_size.second / 2) - (PLAYER_LOGIN_WINDOW_W / 2));
+                        PLAYER_LOGIN_WINDOW_W,
+                        (screen_size.first / 2) - (PLAYER_LOGIN_WINDOW_H / 2),
+                        (screen_size.second / 2) - (PLAYER_LOGIN_WINDOW_W / 2));
     //------------------------------------------------
+    
     board->content = getContentFromFile("other/test.php");
     board->activeWord = &board->content[0];
 };
@@ -57,7 +53,7 @@ std::vector<std::string> Model::getContentFromFile(const std::string& filename) 
         }
         file.close();
     } else {
-        std::cerr << "erorro" << filename << std::endl;
+        std::cerr << "error" << filename << std::endl;
     }
     return words;
 }
@@ -89,6 +85,34 @@ void Model::setUsers(const Json& users)
         std::cerr << "JSON parse error: " << e.what() << std::endl;
     }
     file.close(); 
+}
+
+void Model::setUserSettings(const Json &user_to_change)
+{
+    Json users = getUsers();
+    for (auto& user : users) {
+        if (user_to_change["login"] == user["login"]) 
+        { 
+            if (user_to_change.find("difficulty_mode") == user_to_change.end() && user_to_change.find("speed_type") == user_to_change.end())
+            {
+                user["difficulty_mode"] = "medium";
+                user["speed_type"] = "cpm";
+            }else if (user_to_change.find("speed_type") == user_to_change.end())
+            {
+                user["speed_type"] = "cpm";
+                user["difficulty_mode"] = user_to_change["difficulty_mode"];
+            }else if (user_to_change.find("speed_type") == user_to_change.end())
+            {
+                user["difficulty_mode"] = "medium";
+                user["speed_type"] = user_to_change["speed_type"];
+            }else {
+                user["difficulty_mode"] = user_to_change["difficulty_mode"];
+                user["speed_type"] = user_to_change["speed_type"];
+            }
+            break;
+        }
+    }
+    setUsers(users);
 }
 
 Json Model::getCurrentUser()

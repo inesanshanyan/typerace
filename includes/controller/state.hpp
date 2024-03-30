@@ -13,6 +13,7 @@ public:
     virtual void draw() = 0;
     virtual void handleInput() = 0;
     virtual void changeState() = 0;
+    virtual Menu* getMenu() = 0;
     virtual ~State(){};
 };
 

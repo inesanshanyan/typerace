@@ -5,15 +5,18 @@
 
 class StatsState : public State {
 private:
-    Controller* controller;
+    Controller*         controller;
+    Menu*               menu;
+    static StatsState*  instance;
     StatsState() = default;
-    static StatsState* instance;
 protected:
     StatsState(Controller*);
 public:
     void changeState() override;
     void draw() override;
     void handleInput() override;
+    virtual Menu* getMenu() override;
+
     void countStats();
     void setMaxSpeed(int);
     static StatsState& getInstance(Controller*);

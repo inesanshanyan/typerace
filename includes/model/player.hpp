@@ -14,10 +14,13 @@ class Player
 public:
     WINDOW *mainWindow;
     WINDOW *loginWiondow;
+    WINDOW *settingWindow;
 
     std::string login = "";
     std::string password = "";
     std::string currentWord;
+    std::string speedType = "wpm";
+    std::string difficultyMode = "easy";
 
     std::chrono::high_resolution_clock::time_point start_time;
     std::chrono::milliseconds game_duration;

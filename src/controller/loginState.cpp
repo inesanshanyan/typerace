@@ -6,6 +6,16 @@ LoginState* LoginState::instance = nullptr;
 LoginState::LoginState(Controller *controller)
 {
     this->controller = controller;
+
+    //TODO make it global
+    std::pair<int, int> screen_size(0,0);
+    screen_size = get_screen_size();
+    
+    menu = new Menu({"sign in","sign up"});
+    menu->mainWindow = newwin(MENU_MAIN_WINDOW_H,
+                    MENU_MAIN_WINDOW_W,
+                    (screen_size.first / 2) - (MENU_MAIN_WINDOW_H / 2),
+                    (screen_size.second / 2) - (MENU_MAIN_WINDOW_W / 2));
 }
 LoginState& LoginState::getInstance(Controller* controller) {
     if(instance == nullptr){
@@ -16,60 +26,113 @@ LoginState& LoginState::getInstance(Controller* controller) {
 
 
 void LoginState::draw(){
-    controller->view->drawLoginBoard(controller->model->player);
+    if (isMenuOn)
+    {
+        controller->view->drawMenu(menu);
+    } else 
+    {
+        controller->view->drawLoginBoard(controller->model->player);
+    }
 }
 
-void LoginState::handleInput()
+void LoginState::handleMenuInput(int key)
 {
-    draw();
-    enterLogin(controller->model->player);
-    enterPassword(controller->model->player);
-    if (*controller->model->menu->currentItem == "sign up")
-    {
-        Json users = controller->model->getUsers();
-        for (const auto& user : users) {
-            if (user["login"] == controller->model->player->login &&
-                user["password"] == controller->model->player->password)
-            {
-                controller->model->player->entered = true;
-                controller->state = controller->prevState[0];
-            }
-        }
-        if (!controller->model->player->entered)
-        {
-            controller->model->player->login = "";
-            controller->model->player->password = "";
-            controller->model->errors->lastError = "You entered a wrong Login or password.";
-            controller->state = &MessageState::getInstance(controller);
-        }
-    }else if (*controller->model->menu->currentItem == "sign in")
-    {
-        Json users = controller->model->getUsers();
-        bool flag = true;
-
-        for (const auto& user : users) {
-            if (user["login"] == controller->model->player->login)
-            {
-                flag = false;
-            }
-        }
-        if (flag)
-        {
-            Json newUser;
-            newUser["login"] = controller->model->player->login;
-            newUser["password"] = controller->model->player->password;
-            users.push_back(newUser);
-            controller->model->setUsers(users);
-            controller->model->player->login = "";
-            controller->model->player->password = "";
-        } else{
-            
-        }
+    if(key == 10){
+        isMenuOn = false;
+    }
+    else if (key == KEY_UP){
+        menu->changeOption(0);
+    }
+    else if(key == KEY_DOWN){
+        menu->changeOption(1);
+    }
+    else if(key == KEY_LEFT){
         controller->state = &MenuState::getInstance(controller);
     }
 }
 
 
+void LoginState::handleSignUp()
+{
+    Player *player = controller->model->player;
+    enterLogin(player);
+    enterPassword(player);
+
+    Json users = controller->model->getUsers();
+    for (const auto& user : users) {
+        if (user["login"] == player->login &&
+            user["password"] == player->password)
+        {
+            player->entered = true;
+            player->currentUser = user;
+            controller->state = controller->prevState[0];
+        }
+    }
+    if (!player->entered)
+    {
+        player->login = "";
+        player->password = "";
+        controller->model->errors->lastError = "You entered a wrong Login or password.";
+        controller->state = &MessageState::getInstance(controller);
+    } else {
+        player->start_time = std::chrono::high_resolution_clock::now();
+        controller->view->clear();
+        controller->state = new GameState(controller);
+    }
+    isMenuOn = true;
+};
+
+void LoginState::handleSignIn()
+{
+    Player *player = controller->model->player;
+    enterLogin(player);
+    enterPassword(player);
+
+    bool flag = true;
+    Json users = controller->model->getUsers();
+    for (const auto& user : users) {
+        if (user["login"] == player->login)
+        {
+            flag = false;
+        }
+    }
+    if (flag)
+    {
+        //TODO move this part inside a model (createUser) for example (if checked let me know).
+        Json newUser;
+        newUser["login"] = player->login;
+        newUser["password"] = player->password;
+        // i think below to line hould be inside a setSettings function. what you think?
+        newUser["difficulty_mode"] = "easy";
+        newUser["speed_type"] = "wpm";
+        users.push_back(newUser);
+        controller->model->setUsers(users);
+        player->login = "";
+        player->password = "";
+    } else{
+        
+    }
+    controller->state = &MenuState::getInstance(controller);
+    isMenuOn = true;
+};
+
+void LoginState::handleInput()
+{
+    draw();
+    int key = controller->view->getControlKey();
+    if (isMenuOn) {
+        handleMenuInput(key);
+    } else {
+        if (*menu->currentItem == "sign in")
+        {
+            handleSignIn();
+        }
+        else if(*menu->currentItem == "sign up")
+        {
+            handleSignUp();
+        }
+    }
+}
 
 void LoginState::enterLogin(Player *player)
 {
@@ -88,6 +151,7 @@ void LoginState::enterLogin(Player *player)
         }
     }
 }
+
 void LoginState::enterPassword(Player *player)
 {
     int key = 0;
@@ -108,4 +172,9 @@ void LoginState::enterPassword(Player *player)
 
 void LoginState::changeState(){
     
+}
+
+Menu* LoginState::getMenu()
+{
+    return menu;
 }

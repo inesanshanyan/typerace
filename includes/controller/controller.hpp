@@ -9,7 +9,10 @@
 #include "loginState.hpp"
 #include "messageState.hpp"
 #include "statsState.hpp"
+#include "settingState.hpp"
+#include "abstractMenu.hpp"
 #include <vector>
+std::pair<int, int> get_screen_size();
 
 class Controller {
 public:

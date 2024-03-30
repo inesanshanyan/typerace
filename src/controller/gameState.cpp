@@ -58,9 +58,7 @@ void GameState::checkWord()
     for (size_t i = 0; i < controller->model->player->currentWord.size(); i++)
     {   
         if (controller->model->player->currentWord[i] != controller->model->board->activeWord->c_str()[i])
-        {
             checked = false;
-        }
     }
     if (checked)
     {
@@ -75,7 +73,7 @@ void GameState::changeState(){
 };
 
 void GameState::setSpeed(int time) {
-    controller->model->player->currentUser = controller->model->getCurrentUser();
+    // controller->model->player->currentUser = controller->model->getCurrentUser(); //I move it into loginstate.
     double currentSpeed = controller->model->board->content.size() * (60 / (double)(time / 1000));
     controller->model->player->currentUser["speed"].push_back(currentSpeed);
     Json users = controller->model->getUsers();
@@ -86,4 +84,9 @@ void GameState::setSpeed(int time) {
         }
     }
     controller->model->setUsers(users);
+}
+
+Menu* GameState::getMenu()
+{
+    return nullptr;
 }

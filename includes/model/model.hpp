@@ -8,7 +8,7 @@
 #include "../json/single_include/nlohmann/json.hpp"
 #include <fstream>
 
-#define MENU_MAIN_WINDOW_H 15 
+#define MENU_MAIN_WINDOW_H 20 
 #define MENU_MAIN_WINDOW_W 20
 
 
@@ -33,11 +33,13 @@ public:
     Player* player;
     Board* board;
     Menu* menu;
+    Menu* settingMenu;// please confirm that this is normal. let me know.
     Messeges* errors;
 
     Model();
     Json getUsers();
     void setUsers(const Json& );
+    void setUserSettings(const Json& );
     Json getCurrentUser();
     std::vector<std::string> getContentFromFile(const std::string&);
 };

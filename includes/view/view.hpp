@@ -18,6 +18,7 @@ public:
     void drawBoard(Board *);
     void drawMenu(Menu *);
     void drawLoginBoard(Player *);
+    void drawSelectable(WINDOW *, std::vector<std::string>, std::string );
 
     // it can be changeg, instaeda of model maybe some class(Messages).
     void drawErrorWindow(Messeges *);

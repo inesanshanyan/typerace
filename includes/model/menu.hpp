@@ -14,10 +14,11 @@ public:
     std::vector<std::string> options;
     std::vector<std::vector<std::string>> prevItems;
 
-    Menu(){
-        options = {"start", "login", "pause", "stats", "end"};
-        prevItems.push_back(options);
-        currentItem = options.begin();
+    Menu(std::vector<std::string> options)
+    {
+        this->options = options;
+        prevItems.push_back(this->options);
+        currentItem = this->options.begin();
     };
 
     //TODO WRITE THIS FUNCTION inside a cpp file

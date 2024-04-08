@@ -8,7 +8,7 @@ PauseState::PauseState(Controller *controller) {
     std::pair<int, int> screen_size(0,0);
     screen_size = get_screen_size();
 
-    menu = new Menu({"Resume","Restart", "Main Menu"});
+    menu = new Menu({"Resume", "Restart", "Main Menu"});
     menu->mainWindow = newwin(MENU_MAIN_WINDOW_H,
                             MENU_MAIN_WINDOW_W,
                     (screen_size.first / 2) - (MENU_MAIN_WINDOW_H / 2),
@@ -29,20 +29,23 @@ void PauseState::draw() {
 }
 
 void::PauseState::handleInput(){
-    if (*menu->currentItem == "Resume") {
-        controller->state = controller->prevState.back();
-    }
-    else if(*menu->currentItem == "Restart") {
-        controller->state = new GameState(controller);
-    }
-    else if(*menu->currentItem == "Main Menu") { 
-        controller->state = &MenuState::getInstance(controller);
-    }
-    
+    draw();
+    int key = controller->view->getControlKey();
+    handleMenuInput(key);
 }
+
 void PauseState::handleMenuInput(int key) {
     if(key == 10){
         isMenuOn = false;
+        if (*menu->currentItem == "Resume") {
+            controller->state = controller->prevState.back();
+        }
+        else if(*menu->currentItem == "Restart") {
+            controller->state = new GameState(controller);
+        }
+        else if(*menu->currentItem == "Main Menu") { 
+            controller->state = &MenuState::getInstance(controller);
+        }
     }
     else if (key == KEY_UP){
         menu->changeOption(0);

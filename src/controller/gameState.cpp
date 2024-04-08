@@ -43,13 +43,17 @@ void GameState::handleInput()
         controller->model->player->currentWord.push_back(key);
         checkWord();
     }
-    else if (key == 27){// ESC
+    else if(key == 27){
+        controller->state = &PauseState::getInstance(controller);
+    }
+    /*else if (key == 27){// ESC
         auto it = std::find_if(controller->prevState.begin(), controller->prevState.end(), [](State* s) {
             // Replace MenuState with the actual class name you are looking for
             return dynamic_cast<MenuState*>(s) != nullptr;
         });
         // controller->state = controller->prevState[0];// TODO change it in the future.
-    }
+    }*/
+
 }
 
 void GameState::checkWord()

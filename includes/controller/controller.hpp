@@ -11,6 +11,7 @@
 #include "statsState.hpp"
 #include "settingState.hpp"
 #include "abstractMenu.hpp"
+#include "pauseState.hpp"
 #include <vector>
 std::pair<int, int> get_screen_size();
 

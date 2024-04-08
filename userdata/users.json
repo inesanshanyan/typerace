@@ -12,7 +12,7 @@
         "speed_type": "wpm"
     },
     {
-        "best_speed": 26,
+        "best_speed": 120,
         "difficulty_mode": "difficult",
         "login": "axpers",
         "password": "axpers",
@@ -61,6 +61,26 @@
         "speed": [
             60.0
         ],
+        "speed_type": "wpm"
+    },
+    {
+        "best_speed": 6,
+        "difficulty_mode": "medium",
+        "login": "1",
+        "password": "2",
+        "speed": [
+            6.666666666666667,
+            3.5294117647058822,
+            6.666666666666667,
+            0.7792207792207793,
+            20.0
+        ],
+        "speed_type": "cpm"
+    },
+    {
+        "difficulty_mode": "easy",
+        "login": "3",
+        "password": "4",
         "speed_type": "wpm"
     }
 ]
